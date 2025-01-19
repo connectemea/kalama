@@ -82,8 +82,8 @@ function index({ data }) {
 
 
     return (
-        <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden pb-[40px] px-[38px] pr-[50px] justify-between`} style={{
-            height: `${300 + totalParticipants * 50}px`,
+        <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden justify-between`} style={{
+            height: `${300 + totalParticipants * 50 }px`,
         }} >
 
             <img src={data.stageStatus ? topElement : topElementOnstage} alt="topElement" className='absolute top-0 left-0 w-full max-w-[70px]' />
@@ -133,40 +133,60 @@ function index({ data }) {
                                         </span>
                                     </div>
 
-                                    <div className="pl-2 space-y-2">
-                                        {winner.users.map((user, userIndex) => (
-                                            <div key={userIndex} className="text-left">
-                                                {user.team ? (
-                                                    // Group winner
-                                                    <>
-                                                        <p className="text-[12px] text-orange-400 font-bold leading-none">
-                                                            {user.name}
-                                                        </p>
-                                                        <p className="text-[10px] line-clamp-1">
-                                                            {user.team}
-                                                        </p>
-                                                    </>
-                                                ) : (
-                                                    // Individual winner
-                                                    <>
-                                                        <p className="text-[14px] font-bold leading-none">
-                                                            {user.name}
-                                                        </p>
-                                                        <p className="text-[10px]">
-                                                            {user.college}
-                                                        </p>
-                                                    </>
-                                                )}
-                                            </div>
-                                        ))}
+                                    <div className="pl-2 space-y-1">
+                                        {winner.users.map((user, userIndex) => {
+
+                                            const getFontSize = (totalUsers) => {
+                                                if (totalUsers <= 1) return '14px';
+                                                if (totalUsers === 2) return '10px';
+                                                if (totalUsers === 3) return '8px';
+                                                return '10px'; // For 4 or more users
+                                            };
+
+                                            const getSmallFontSize = (totalUsers) => {
+                                                if (totalUsers <= 1) return '10px';
+                                                if (totalUsers === 2) return '8px';
+                                                if (totalUsers === 3) return '6px';
+                                                return '7px'; // For 4 or more users
+                                            };
+
+                                            const nameSize = getFontSize(winner.users.length);
+                                            const collegeSize = getSmallFontSize(winner.users.length);
+
+
+
+                                            return (
+                                                <div key={userIndex} className="text-left">
+                                                    {user.team ? (
+                                                        // Group winner
+                                                        <>
+                                                            <p className="font-bold leading-none" style={{ fontSize: nameSize, color: '#fb923c' }}>
+                                                                {user.name}
+                                                            </p>
+                                                            <p className="line-clamp-1" style={{ fontSize: collegeSize }}>
+                                                                {user.team}
+                                                            </p>
+                                                        </>
+                                                    ) : (
+                                                        // Individual winner
+                                                        <>
+                                                            <p className="font-bold leading-none" style={{ fontSize: nameSize }}>
+                                                                {user.name}
+                                                            </p>
+                                                            <p style={{ fontSize: collegeSize }}>
+                                                                {user.college}
+                                                            </p>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
-                </div>
-
-                <div className="py-3 w-full mx-auto ">
+                    <div className="py-4 w-full mx-auto ">
                     <div className={classNames('flex justify-around w-full  mt-2 -ml-4',
                         {
                             'text-[12px] ': data.programName.length > 20,
@@ -176,6 +196,18 @@ function index({ data }) {
                         <img src={sponserLogo} alt="" className='w-8' />
                     </div>
                 </div>
+                </div>
+
+                {/* <div className="py-3 w-full mx-auto ">
+                    <div className={classNames('flex justify-around w-full  mt-2 -ml-4',
+                        {
+                            'text-[12px] ': data.programName.length > 20,
+                        }
+                    )}>
+                        <img src={CreatorLogo} alt="" className='w-8' />
+                        <img src={sponserLogo} alt="" className='w-8' />
+                    </div>
+                </div> */}
 
             </div>
 

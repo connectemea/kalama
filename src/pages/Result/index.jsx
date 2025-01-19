@@ -80,35 +80,6 @@ function Index() {
       const { data } = await response.json();
       // console.log("Fetched Data:", data);
 
-      // Format Data
-      // const formattedData = data.map((program) => ({
-      //   programName: program.name,
-      //   id: program._id,
-      //   result_no: program.serial_number,
-      //   stageStatus: program.is_onstage,
-      //   is_group: program.is_group,
-      //   winners: program.winningRegistrations.reduce((acc, winner) => {
-      //     if (program.is_group && winner.eventRegistration.collegeName) {
-      //       // **Group Winners**
-      //       acc.push({
-      //         position: winner.position,
-      //         name: winner.eventRegistration.collegeName,
-      //       });
-      //     } else {
-      //       // **Individual Winners**
-      //       winner.eventRegistration.participants.user.forEach((participant) => {
-      //         acc.push({
-      //           position: winner.position,
-      //           name: participant.name,
-      //           college: participant.college || "Unknown College",
-      //           year: participant.year_of_study || "N/A",
-      //         });
-      //       });
-      //     }
-      //     return acc;
-      //   }, []).sort((a, b) => a.position - b.position), // Sort by position
-      // }));
-
       const formattedData = data.map((program) => ({
         programName: program.name,
         id: program._id,
@@ -192,7 +163,7 @@ function Index() {
     });
     html2canvas(poster,
       {
-        scale: 6,
+        scale: 5,
         useCORS: true
       }).then((canvas) => {
         const imageUrl = canvas.toDataURL('image/png');
@@ -218,7 +189,7 @@ function Index() {
     });
     html2canvas(poster,
       {
-        scale: 6,
+        scale: 5,
         useCORS: true
       }).then((canvas) => {
         canvas.toBlob(async (blob) => {
