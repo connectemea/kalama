@@ -36,7 +36,7 @@ function CollegeTab({ data }) {
                         College
                     </div>
                 </div>
-                <div ref={parent} className='flex-1 flex-grow w-full flex flex-col mb-6 '>
+                <div ref={parent} className='flex-1 flex-grow w-full grid grid-cols-2 grid-rows-3 mb-2 gap-x-8 gap-y-4'>
                     {filteredData.length > 0 ? filteredData.slice(0, 6).map((college, index) => {
                         return (
                             <div className='w-full flex-1 flex-grow ' key={index}>

@@ -40,7 +40,7 @@ function IndividualTab({ data }) {
                         Individual
                     </div>
                 </div>
-                <div ref={parent} className='flex-1 flex-grow w-full flex flex-col'>
+                <div ref={parent} className='flex-1 flex-grow w-full grid grid-cols-2 grid-rows-3 gap-x-8 gap-y-4'>
                     {data.length ? data.map((category, index) => {
                         // Only proceed if winners exist in the category
                         if (category.winners.length === 0) return null;
