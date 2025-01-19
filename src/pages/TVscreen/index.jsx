@@ -163,9 +163,9 @@ function Index() {
     };
 
     return (
-        <div className="w-full min-h-[100vh] relative overflow-hidden p-4 select-none">
-            <section className="hidden 2xl:block w-full mx-auto mt-10 px-4">
-                <div className="flex justify-between items-center w-full max-w-[90vw] mx-auto p-10">
+        <div className="w-full h-[100vh] relative overflow-hidden p-4 select-none">
+            <section className="hidden lg:block w-full mx-auto  px-4">
+                <div className="flex justify-between items-center w-full max-w-[90vw] mx-auto p-4">
                     <div className="flex gap-4 items-center justify-center h-fit w-fit">
                         <div>
                             <img src={Logo_kalama} alt="Kalama Logo" className="mx-auto max-w-[10vh] w-full" />
@@ -176,7 +176,7 @@ function Index() {
                         </div>
                     </div>
                     <div>
-                        <h1 className='  font-semibold right-0 whitespace-nowrap text-[54px] leading-[1px] -ml-[60%]'>
+                        <h1 className='  font-semibold right-0 whitespace-nowrap text-[54px] leading-[1px] -ml-[30%]'>
                             Score Board
                         </h1>
                     </div>
@@ -185,16 +185,16 @@ function Index() {
                     </div>
                 </div>
                 <main className="flex justify-around items-start w-full mt-10 mx-auto max-w-[90vw]">
-                    <section className="w-[30%]  px-4 flex-1">
+                    <section className="w-[35%]  px-4 flex-1">
                         <div className="flex justify-center w-full mx-auto sm:px-0">
                             <CollegeTab data={colleges} />
                         </div>
                     </section>
                     <section className="w-full max-w-[800px]  px-4 flex flex-col gap-12">
-                        <div className="flex justify-center w-full mx-auto sm:px-0 scale-110" >
+                        {/* <div className="flex justify-center w-full mx-auto sm:px-0 " >
                             <PosterTab data={programs} loading={PosterLoading} />
-                        </div>
-                        <div className='bg-customBlue text-white rounded-xl scale-110 max-w-[400px] mx-auto flex border border-customBlue mt-10 overflow-hidden' style={{ boxShadow: '0px 2px 14px 2px rgba(0, 0, 0, 0.25)' }}>
+                        </div> */}
+                        <div className='bg-customBlue text-white rounded-xl max-w-[400px] mx-auto flex border border-customBlue mt-10 overflow-hidden' style={{ boxShadow: '0px 2px 14px 2px rgba(0, 0, 0, 0.25)' }}>
                             <div className='p-3 flex flex-col items-center justify-center gap-1 text-center'>
                                 <div>
                                     <h1 className='text-lg font-bold '>Scan the QR Code
@@ -214,7 +214,7 @@ function Index() {
                             </div>
                         </div>
                     </section>
-                    <section className="w-[30%]  px-4 flex-1">
+                    <section className="w-[35%]  px-4 flex-1">
                         <div className="flex justify-center w-full mx-auto sm:px-0">
                             <IndividualTab data={individuals} />
                         </div>
@@ -246,7 +246,7 @@ function Index() {
                 />
             </section>
 
-            <div className="flex items-center justify-center w-full min-h-screen px-4 py-2 bg-slate-100 font-semibold 2xl:hidden">
+            <div className="flex items-center justify-center w-full min-h-screen px-4 py-2 bg-slate-100 font-semibold lg:hidden">
                 This Page is optimized for TV screens only.
             </div>
         </div>
