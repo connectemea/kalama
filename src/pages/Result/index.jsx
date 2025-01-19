@@ -81,6 +81,34 @@ function Index() {
       // console.log("Fetched Data:", data);
 
       // Format Data
+      // const formattedData = data.map((program) => ({
+      //   programName: program.name,
+      //   id: program._id,
+      //   result_no: program.serial_number,
+      //   stageStatus: program.is_onstage,
+      //   is_group: program.is_group,
+      //   winners: program.winningRegistrations.reduce((acc, winner) => {
+      //     if (program.is_group && winner.eventRegistration.collegeName) {
+      //       // **Group Winners**
+      //       acc.push({
+      //         position: winner.position,
+      //         name: winner.eventRegistration.collegeName,
+      //       });
+      //     } else {
+      //       // **Individual Winners**
+      //       winner.eventRegistration.participants.user.forEach((participant) => {
+      //         acc.push({
+      //           position: winner.position,
+      //           name: participant.name,
+      //           college: participant.college || "Unknown College",
+      //           year: participant.year_of_study || "N/A",
+      //         });
+      //       });
+      //     }
+      //     return acc;
+      //   }, []).sort((a, b) => a.position - b.position), // Sort by position
+      // }));
+
       const formattedData = data.map((program) => ({
         programName: program.name,
         id: program._id,
@@ -89,24 +117,42 @@ function Index() {
         is_group: program.is_group,
         winners: program.winningRegistrations.reduce((acc, winner) => {
           if (program.is_group && winner.eventRegistration.collegeName) {
-            // **Group Winners**
-            acc.push({
-              position: winner.position,
-              name: winner.eventRegistration.collegeName,
-            });
-          } else {
-            // **Individual Winners**
-            winner.eventRegistration.participants.user.forEach((participant) => {
+            // Group Winners
+            const positionIndex = acc.findIndex(w => w.position === winner.position);
+            const newUser = {
+              name: winner.eventRegistration.collegeName
+            };
+            
+            if (positionIndex === -1) {
               acc.push({
                 position: winner.position,
+                users: [newUser]
+              });
+            } else {
+              acc[positionIndex].users.push(newUser);
+            }
+          } else {
+            // Individual Winners
+            winner.eventRegistration.participants.user.forEach((participant) => {
+              const positionIndex = acc.findIndex(w => w.position === winner.position);
+              const newUser = {
                 name: participant.name,
                 college: participant.college || "Unknown College",
-                year: participant.year_of_study || "N/A",
-              });
+                year: participant.year_of_study || "N/A"
+              };
+              
+              if (positionIndex === -1) {
+                acc.push({
+                  position: winner.position,
+                  users: [newUser]
+                });
+              } else {
+                acc[positionIndex].users.push(newUser);
+              }
             });
           }
           return acc;
-        }, []).sort((a, b) => a.position - b.position), // Sort by position
+        }, []).sort((a, b) => a.position - b.position),
       }));
 
       setSelectedProgram(formattedData[0]);
