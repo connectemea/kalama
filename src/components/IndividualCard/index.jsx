@@ -21,7 +21,7 @@ function index({ individual, index, title, individualIndex  }) {
     return (
         <div
             key={individualIndex}
-            className={classNames("border-b-[4px] border-b-customEmerald max-w-[360px] mx-auto mb-4 !bg-white z-30 relative",
+            className={classNames("border-b-[4px] border-b-customEmerald mx-auto mb-4 !bg-white z-30 relative",
                 { 'border-b-customGreen': index === 0 },
                 { 'border-b-customEmerald': index === 1 },
                 { 'border-b-[#3592BA]': index === 2 },
@@ -52,7 +52,7 @@ function index({ individual, index, title, individualIndex  }) {
                     <div className="flex flex-col gap-1 flex-1 flex-grow">
                         <div className="">
                             <p className="font-medium text-xl">{individual?.name}</p>
-                            <p className="text-sm">{individual?.college}</p>
+                            <p className="text-sm min-h-[36px]">{individual?.college}</p>
                         </div>
                         <hr className="border-[1.5px] border-borderColor mb-1" />
                         <div className="flex items-end justify-end">

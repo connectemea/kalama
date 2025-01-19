@@ -175,7 +175,8 @@ function Index() {
     return (
         <div className="w-full h-[100vh] relative overflow-hidden p-4 select-none">
             <section className="hidden lg:block w-full mx-auto">
-                <div className="flex justify-between items-center w-full max-w-[90vw] mx-auto px-4">
+
+                <div className="flex justify-between items-center w-full max-w-[90vw] mx-auto p-4">
                     <div className="flex gap-4 items-center justify-center h-fit w-fit">
                         <div>
                             <img src={Logo_kalama} alt="Kalama Logo" className="mx-auto max-w-[10vh] w-full" />
@@ -190,11 +191,6 @@ function Index() {
                             {showPoster ? "Results" : "Score Board"}
                         </h1>
                     </div>
-                    <div >
-                        {/* <img src={Logo_GloryBoard} alt="Product Logo" className="mx-auto max-w-[20vw]" /> */}
-                        
-                        <div className='bg-customBlue text-white rounded-xl max-w-[300px] mx-auto flex border border-customBlue mt-10 overflow-hidden' style={{ boxShadow: '0px 2px 14px 2px rgba(0, 0, 0, 0.25)' }}>
-                            <div className='p-2 flex flex-col items-center justify-center gap-1 text-center'>
                                 <div>
                                     <h1 className='font-bold text-xs'>Scan the QR Code
                                     </h1>
@@ -209,18 +205,7 @@ function Index() {
                                 <img src={QrCode} width={50} height={50} alt='qr code' />
                             </div>
                         </div>
-                    </div>
-                </div>
 
-
-                <div ref={parent}>
-                {showPoster ? (
-                    <TvPoster />
-                ) : (
-                <main className="flex justify-around items-start w-full gap-10 px-4 pt-4">
-                        <div className="flex justify-center w-full mx-auto sm:px-0 px-4 flex-1">
-                            <CollegeTab data={colleges} />
-                        </div>
                         <div className="flex justify-center w-full mx-auto sm:px-0 px-4 flex-1">
                             <IndividualTab data={individuals} />
                         </div>
