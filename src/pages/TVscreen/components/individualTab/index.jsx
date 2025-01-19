@@ -33,13 +33,14 @@ function IndividualTab({ data }) {
     return (
         <div className="blur-10 z-10 w-full flex items-start">
 
-            <div className='mt-4 flex  w-full flex-col gap-6'>
+            <div className='mt-4 flex  w-full flex-col gap-4'>
                 <div className='px-2  relative flex flex-col items-center justify-center'>
                     
                     <div className='bg-customBlue py-1 px-4   text-white font-semibold  text-3xl'>
                         Individual
                     </div>
                 </div>
+
                 <div ref={parent} className='flex-1 flex-grow w-full grid grid-cols-2 grid-rows-3 gap-x-12 gap-y-4'>
                     {data.length ? data.map((category, index) => {
                         // Only proceed if winners exist in the category
