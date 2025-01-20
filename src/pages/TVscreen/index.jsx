@@ -233,7 +233,7 @@ function Index() {
                 </div>
                 <div className="mt-4">
                     <AnimatePresence mode="wait">
-                        {showPoster ? (
+                        {true ? (
                             <motion.div
                                 key="poster"
                                 initial={{ opacity: 0, x: 100 }}  // Starts from the right

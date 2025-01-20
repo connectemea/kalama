@@ -48,7 +48,7 @@ function CollegeTab({ data }) {
                     </div>
                 ) :
                     (
-                        <div className="flex justify-center items-center w-full h-[300px] my-10 mx-auto">
+                        <div className="flex justify-center items-center w-full h-[280px] my-10 mx-auto mt-24">
                             <img src={Empty} alt="Empty" className="w-1/2 mx-auto" />
                         </div>
                     )}

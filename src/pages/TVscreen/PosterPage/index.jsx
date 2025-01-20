@@ -34,14 +34,14 @@ function index({ loading, programs }) {
                         //     clickable: true,
                         //     dynamicMainBullets: true,
                         // }}
-                        className="h-full w-full"
+                        className="h-full w-full items-center flex  justify-center"
                     >
                         {[...Array(5)].map((_, index) => (
                             <SwiperSlide
                                 key={index}
                                 className={`flex items-center justify-center h-full transition-transform duration-500 `}
                             >
-                                <div className="h-full flex items-center justify-center overflow-hidden min-w-[280px] max-w-[380px] max-h-[500px] min-h-[300px] bg-slate-200 animate-pulse text-center"></div>
+                                <div className="h-full flex items-center justify-center mx-auto overflow-hidden min-w-[280px] max-w-[380px] max-h-[500px] min-h-[300px] bg-slate-200 animate-pulse text-center"></div>
                             </SwiperSlide>
                         ))}
 

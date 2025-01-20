@@ -35,40 +35,43 @@ function IndividualTab({ data }) {
 
             <div className='mt-4 flex  w-full flex-col gap-4'>
                 <div className='px-2  relative flex flex-col items-center justify-center mb-2'>
-                    
+
                     <div className='bg-customBlue py-1 px-4   text-white font-semibold  text-3xl'>
                         Individual
                     </div>
                 </div>
-                <div ref={parent} className='flex-1 flex-grow w-full grid grid-cols-2 grid-rows-3 gap-x-4 '>
-                    {data.length ? data.map((category, index) => {
-                        // Only proceed if winners exist in the category
-                        if (category.winners.length === 0) return null;
+                {data.length > 0 ? (
+                    <div ref={parent} className='flex-1 flex-grow w-full grid grid-cols-2 grid-rows-3 gap-x-4 '>
+                        {data.map((category, index) => {
+                            // Only proceed if winners exist in the category
+                            if (category.winners.length === 0) return null;
 
-                        const isExpanded = expandedCategories[index];
-                        const topScorer = category.winners[0];
-                        const otherWinners = category.winners.slice(1);
-                        const winnersToShow = isExpanded ? category.winners : [topScorer];
-                        const title = category.title;
+                            const isExpanded = expandedCategories[index];
+                            const topScorer = category.winners[0];
+                            const otherWinners = category.winners.slice(1);
+                            const winnersToShow = isExpanded ? category.winners : [topScorer];
+                            const title = category.title;
 
-                        return (
-                            <div key={index} className="mb-1">
-                                {winnersToShow.length > 0 && (
-                                    <>
-                                        {winnersToShow.map((individual, individualIndex) => (
-                                            <IndividualCard key={individualIndex} individual={individual} index={index} title={title} individualIndex={individualIndex} />
-                                        ))}
-                                    </>
-                                )}
-                            </div>
-                        )
-                    }) : (
-                        <div className="flex justify-center items-center w-full h-[300px] my-10 mx-auto">
+                            return (
+                                <div key={index} className="mb-1">
+                                    {winnersToShow.length > 0 && (
+                                        <>
+                                            {winnersToShow.map((individual, individualIndex) => (
+                                                <IndividualCard key={individualIndex} individual={individual} index={index} title={title} individualIndex={individualIndex} />
+                                            ))}
+                                        </>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
+                ) :
+                    (
+                        <div className="flex justify-center items-center w-full h-[260px] my-10 mx-auto mt-24">
                             <img src={Empty} alt="Empty" className="w-1/2 mx-auto" />
                         </div>
                     )
-                    }
-                </div>
+                }
             </div>
         </div>
 
