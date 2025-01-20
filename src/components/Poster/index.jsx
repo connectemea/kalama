@@ -87,6 +87,11 @@ function index({ data }) {
     }
     // console.log(data,+'my slide')
 
+    const RemoveComma = (text = "") => {
+        console.log(text)
+        return text.replace(/,/g, ' ');
+    }
+
     return (
         <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden justify-between bg-white`}>
 
@@ -98,7 +103,7 @@ function index({ data }) {
             <img src={data?.stageStatus ? blur6 : blur3} className="absolute  left-2/4 right-0 bottom-0 w-36 -z-10" />
             <img src={data?.stageStatus ? blur5 : blur2} className="absolute  top-0 right-1/4 w-36" />
 
-            <div className="flex justify-between flex-col h-full mb-[40px]">
+            <div className="flex justify-between flex-col h-full mb-[40px] mx-[48px]">
                 <div className="flex-1">
 
                     <div className="flex items-center justify-center">
@@ -165,20 +170,20 @@ function index({ data }) {
                                                         // Group winner
                                                         <>
                                                             <p className="font-bold leading-none wordIssue" style={{ fontSize: nameSize, color: '#fb923c' }}>
-                                                                {user.name}
+                                                                {(user.name)}
                                                             </p>
                                                             <p className="line-clamp-1" style={{ fontSize: collegeSize }}>
-                                                                {user.team}
+                                                                {RemoveComma(user.team)}
                                                             </p>
                                                         </>
                                                     ) : (
                                                         // Individual winner
                                                         <>
                                                             <p className="font-bold leading-none wordIssue !whitespace-normal" style={{ fontSize: nameSize }}>
-                                                                {user.name}
+                                                                {RemoveComma(user.name)}
                                                             </p>
                                                             <p style={{ fontSize: collegeSize }}>
-                                                                {user.college}
+                                                                {RemoveComma(user?.college)}
                                                             </p>
                                                         </>
                                                     )}
@@ -191,15 +196,15 @@ function index({ data }) {
                         ))}
                     </div>
                     <div className="py-4 w-full mx-auto ">
-                    <div className={classNames('flex justify-around w-full  mt-2 -ml-4',
-                        {
-                            'text-[12px] ': data?.programName?.length > 20,
-                        }
-                    )}>
-                        <img src={CreatorLogo} alt="" className='w-8' />
-                        <img src={sponserLogo} alt="" className='w-8' />
+                        <div className={classNames('flex justify-around w-full  mt-2 -ml-4',
+                            {
+                                'text-[12px] ': data?.programName?.length > 20,
+                            }
+                        )}>
+                            <img src={CreatorLogo} alt="" className='w-8' />
+                            <img src={sponserLogo} alt="" className='w-8' />
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 {/* <div className="py-3 w-full mx-auto ">

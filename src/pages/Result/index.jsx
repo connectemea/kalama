@@ -128,7 +128,7 @@ function Index() {
           return acc;
         }, []).sort((a, b) => a.position - b.position),
       }));
-
+      // console.log(formattedData)
       setSelectedProgram(formattedData[0]);
       setIsDialogOpen(true);
       // console.log("Formatted Data:", formattedData[0]);
@@ -245,7 +245,7 @@ function Index() {
           </div>
 
         </div>
-        {selectedProgram && (
+        {filteredPrograms.length > 0 && selectedProgram && (
           < div className='min-h-[400px] pb-4'>
             {/* {loadingPoster ? (
                   <div className='flex items-center justify-center py-4'>
