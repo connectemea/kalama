@@ -32,6 +32,8 @@ function Index() {
   const [parent] = useAutoAnimate()
   const [imageUrl, setImageUrl] = useState('');
   const [posterLoading, setPosterLoading] = useState(false);
+  const [showPoster, setShowPoster] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -39,8 +41,10 @@ function Index() {
         const response = await fetch(`${ApiUrl}/events/resultPublished`);
         const data = await response.json();
         // console.log(data);
-        setPrograms(data?.data);
-        handleProgramSelect(data?.data[0]);
+        const sortData = data?.data.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
+        setPrograms(sortData);
+
+        handleProgramSelect(sortData[0]);
       } catch (error) {
         console.error(error);
       } finally {
@@ -52,6 +56,7 @@ function Index() {
 
   useEffect(() => {
     if (searchTerm !== '') {
+      setShowPoster(false);
       const filteredProgram = programs.filter((program) => program.name.toLowerCase().includes(searchTerm.toLowerCase()));
       setFilteredPrograms(filteredProgram);
     } else if (searchTerm === '') {
@@ -130,6 +135,7 @@ function Index() {
       }));
       // console.log(formattedData)
       setSelectedProgram(formattedData[0]);
+      setShowPoster(true);
       setIsDialogOpen(true);
       // console.log("Formatted Data:", formattedData[0]);
     } catch (error) {
@@ -144,7 +150,7 @@ function Index() {
   const isNewRelease = (dateString) => {
     // console.log(dateString);
     const currentDate = new Date();
-    const programDate = new Date(dateString); 
+    const programDate = new Date(dateString);
 
     // Calculate the difference in hours
     const timeDifference = Math.abs(currentDate - programDate) / (1000 * 60);
@@ -245,14 +251,14 @@ function Index() {
           </div>
 
         </div>
-        {filteredPrograms.length > 0 && selectedProgram && !searchTerm && (
+        {filteredPrograms.length > 0 && selectedProgram && showPoster && (
           < div className='min-h-[400px] pb-4'>
             {/* {loadingPoster ? (
                   <div className='flex items-center justify-center py-4'>
                     <Loader className='animate-spin' />
                   </div>
                 ) : ( */}
-            <div className='flex items-center justify-center pt-6'  ref={parent}>
+            <div className='flex items-center justify-center pt-6' ref={parent}>
               {posterLoading ? (
                 <div className='w-full h-full min-h-[400px] max-w-[360px] bg-slate-200 animate-pulse'>
                 </div>
@@ -263,9 +269,9 @@ function Index() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.4 }}
                 >
-                <div className='w-fit h-fit' id='resultPosterId'>
-                  <Poster data={selectedProgram} />
-                </div>
+                  <div className='w-fit h-fit' id='resultPosterId'>
+                    <Poster data={selectedProgram} />
+                  </div>
                 </motion.div>
               )}
 
@@ -282,69 +288,69 @@ function Index() {
 
         {/* Program List */}
         {/* { */}
-            <div className='mt-10 w-full mx-auto'>
-              <motion.div
-                className='flex flex-wrap gap-4 items-center justify-center w-full mx-auto'
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.4 }}
-                ref={parent}
-              >
-                {!loading ? (
-                  <>
-                    {filteredPrograms.length > 0 ? (
-                      filteredPrograms.map((program, index) => (
-                        <motion.button
-                          disabled={program?._id === selectedProgram?.id}
-                          key={index}
-                          onClick={() => handleProgramSelect(program)}
-                          style={{ backgroundColor: colors[index % colors.length] }}
-                          className='bg-[#605F5F] border-[1.6px] cursor-pointer border-b-[4px] hover:border-b-[2px] border-borderColor px-4 py-1 text-white font-semibold rounded-none shadow-md flex items-center justify-center leading-5 relative disabled:!opacity-50 disabled:!cursor-not-allowed'
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 20 }}
-                          transition={{ duration: 0.4 }}
-                          // whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          {extractValidText(program?.name)}
-                          {isNewRelease(program?.last_updated) && (
-                            <span className='text-[10px] bg-red-500 text-white px-1 h-[16px] flex items-center justify-center py-[0.1px] rounded-md ml-2 absolute -top-2 -right-3'>
-                              New
-                            </span>
-                          )}
-                        </motion.button>
-                      ))
-                    ) : (
-                      programs.length === 0 ? (
-                        <div>
-                          <p className='text-gray-500 flex flex-col text-center'>
-                            Not Results Published Yet
-                          </p>
-                        </div>
-                      ) : (
-                        <motion.p
-                          className='text-gray-500 flex flex-col text-center'
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          No Results found.
-                          <img src={Empty} alt="empty" className="mt-2 max-w-[380px]" />
-                        </motion.p>
-                      )
-                    )}
-                  </>
+        <div className='mt-10 w-full mx-auto'>
+          <motion.div
+            className='flex flex-wrap gap-4 items-center justify-center w-full mx-auto'
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.4 }}
+            ref={parent}
+          >
+            {!loading ? (
+              <>
+                {filteredPrograms.length > 0 ? (
+                  filteredPrograms.map((program, index) => (
+                    <motion.button
+                      disabled={program?._id === selectedProgram?.id}
+                      key={index}
+                      onClick={() => handleProgramSelect(program)}
+                      style={{ backgroundColor: colors[index % colors.length] }}
+                      className='bg-[#605F5F] border-[1.6px] cursor-pointer border-b-[4px] hover:border-b-[2px] border-borderColor px-4 py-1 text-white font-semibold rounded-none shadow-md flex items-center justify-center leading-5 relative disabled:!opacity-50 disabled:!cursor-not-allowed'
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 20 }}
+                      transition={{ duration: 0.4 }}
+                      // whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {extractValidText(program?.name)}
+                      {isNewRelease(program?.last_updated) && (
+                        <span className='text-[10px] bg-red-500 text-white px-1 h-[16px] flex items-center justify-center py-[0.1px] rounded-md ml-2 absolute -top-2 -right-3'>
+                          New
+                        </span>
+                      )}
+                    </motion.button>
+                  ))
                 ) : (
-                  <div className='flex items-center justify-center w-full py-6'>
-                    {/* <Loader className='animate-spin' /> */}
-                    <img src={Loading} alt="loading" className="max-w-[360px]" />
-                  </div>
+                  programs.length === 0 ? (
+                    <div>
+                      <p className='text-gray-500 flex flex-col text-center'>
+                        Not Results Published Yet
+                      </p>
+                    </div>
+                  ) : (
+                    <motion.p
+                      className='text-gray-500 flex flex-col text-center'
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      No Results found.
+                      <img src={Empty} alt="empty" className="mt-2 max-w-[380px]" />
+                    </motion.p>
+                  )
                 )}
-              </motion.div>
-            </div>
-          {/* // ) : (
+              </>
+            ) : (
+              <div className='flex items-center justify-center w-full py-6'>
+                {/* <Loader className='animate-spin' /> */}
+                <img src={Loading} alt="loading" className="max-w-[360px]" />
+              </div>
+            )}
+          </motion.div>
+        </div>
+        {/* // ) : (
           //   <div className='flex items-center justify-center w-full py-6'>
           //     <img src={Loading} alt="loading" className="max-w-[360px]" />
           //   </div>

@@ -144,7 +144,7 @@ function Index() {
           <p className="text-center text-gray-500 mt-4">Loading...</p>
         ) : (
           <div className=''>
-            {console.log(individuals)}
+            {/* {console.log(individuals)} */}
             {activeTab === 'college' ? <CollegeTab data={colleges} /> : <IndividualTab data={individuals} />}
           </div>
 

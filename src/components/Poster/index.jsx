@@ -88,7 +88,7 @@ function index({ data }) {
     // console.log(data,+'my slide')
 
     const RemoveComma = (text = "") => {
-        console.log(text)
+        // console.log(text)
         return text.replace(/,/g, ' ');
     }
 
