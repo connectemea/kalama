@@ -24,21 +24,25 @@ function Index() {
 
 
     useEffect(() => {
-        // Fetching Data concurrently
-        fetchData();
-
-        // Setting an interval to refetch data every 30 seconds (30000ms)
-        const intervalId = setInterval(() => {
-            fetchData();
-        }, 50000);
-
-        const intervalId2 = setInterval(() => {
-            setShowPoster(!showPoster);
-        }, 1000 * (showPoster ? 10 : 40));
-
-        // Cleanup the interval when the component is unmounted or the effect re-runs
-        return () => clearInterval(intervalId, intervalId2);
-    }, []);
+        fetchData(); // Initial fetch
+    
+        const intervalId = setInterval(fetchData, 50000); // Fetch data every 50 seconds
+    
+        let switchInterval;
+    
+        const startSwitching = () => {
+            switchInterval = setInterval(() => {
+                setShowPoster(prev => !prev);
+            }, showPoster ? 40000 : 10000); // 10s leaderboard, 40s poster
+        };
+    
+        startSwitching(); // Start switching logic
+    
+        return () => {
+            clearInterval(intervalId);
+            clearInterval(switchInterval);
+        };
+    }, [showPoster]);
 
     const fetchData = async () => {
         setLoading(true);
