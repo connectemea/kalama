@@ -29,7 +29,7 @@ import classNames from 'classnames';
 
 function index({ data }) {
 
-    console.log(data)
+    // console.log(data)
 
 
     const getPosition = (position) => {
@@ -71,15 +71,21 @@ function index({ data }) {
 
     function ResultNumber(result_no) {
         // '001'
+        if (result_no === null || result_no === undefined) {
+            return '001';
+        }
         return result_no.toString().padStart(3, '0');
     }
 
     function extractValidText(text) {
-        const match = text.match(/^(.*?\s*\(EASTERN\)|.*?\s*\(WESTERN\))/);
+        if (!text) {
+            return '';
+        }
+        const match = text?.match(/^(.*?\s*\(EASTERN\)|.*?\s*\(WESTERN\))/);
         // console.log(match);
         return match ? match[1].trim() : text;
     }
-    console.log(data,+'my slide')
+    // console.log(data,+'my slide')
 
     return (
         <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden justify-between bg-white`}>
@@ -113,11 +119,11 @@ function index({ data }) {
                     <div className={`${data?.stageStatus ? 'bg-[#276692]' : 'bg-[#220440] '} text-white px-2 py-1  mt-3 max-w-[220px] text-[14px] text-center mx-auto`}>
                         <span className={classNames('text-[14px] font-semibold text-center wordIssue',
                             {
-                                'text-[12px] ': data?.programName.length > 20,
+                                'text-[12px] ': data?.programName?.length > 20,
                             })}>{extractValidText(data?.programName)}</span>
                     </div>
                     <div className="mt-3 space-y-4 h-fit">
-                        {data?.winners.map((winner, index) => (
+                        {data?.winners?.map((winner, index) => (
                             <div key={index}>
                                 <div className="flex max-w-[270px] items-start">
                                     <div className="relative h-fit">
@@ -148,8 +154,8 @@ function index({ data }) {
                                                 return '7px'; // For 4 or more users
                                             };
 
-                                            const nameSize = getFontSize(winner.users.length);
-                                            const collegeSize = getSmallFontSize(winner.users.length);
+                                            const nameSize = getFontSize(winner?.users?.length);
+                                            const collegeSize = getSmallFontSize(winner?.users?.length);
 
 
 
@@ -187,7 +193,7 @@ function index({ data }) {
                     <div className="py-4 w-full mx-auto ">
                     <div className={classNames('flex justify-around w-full  mt-2 -ml-4',
                         {
-                            'text-[12px] ': data.programName.length > 20,
+                            'text-[12px] ': data?.programName?.length > 20,
                         }
                     )}>
                         <img src={CreatorLogo} alt="" className='w-8' />

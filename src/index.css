@@ -70,21 +70,13 @@
   transform: scale(1.5);
 }
 
-.tvmessage {
-  display: flex;
+.swiper-slide {
+  opacity: 0.6;
+  scale: 0.9;
+
 }
 
-.tvscreen {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .tvmessage {
-    display: none !important;
-  }
-
-  .tvscreen {
-    display: flex;
-  }
-
+.swiper-slide-active {
+  scale: 1.1;
+  opacity: 1;
 }

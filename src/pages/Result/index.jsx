@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/ui/Header';
 import { SearchIcon } from '@/assets/icons';
-
-
 import {
   Dialog,
   DialogContent,
@@ -42,6 +40,7 @@ function Index() {
         const data = await response.json();
         // console.log(data);
         setPrograms(data?.data);
+        handleProgramSelect(data?.data[0]);
       } catch (error) {
         console.error(error);
       } finally {
@@ -62,6 +61,10 @@ function Index() {
   }, [searchTerm, programs]);
 
   const handleProgramSelect = async (program) => {
+    // if (program._id === selectedProgram?.id) {
+    //   alert('Already selected');
+    //   return;
+    // }
     setSelectedProgram(program);
     setPosterLoading(true);
 
@@ -93,7 +96,7 @@ function Index() {
             const newUser = {
               name: winner.eventRegistration.collegeName
             };
-            
+
             if (positionIndex === -1) {
               acc.push({
                 position: winner.position,
@@ -111,7 +114,7 @@ function Index() {
                 college: participant.college || "Unknown College",
                 year: participant.year_of_study || "N/A"
               };
-              
+
               if (positionIndex === -1) {
                 acc.push({
                   position: winner.position,
@@ -242,106 +245,114 @@ function Index() {
           </div>
 
         </div>
-
-        {/* Program List */}
-        {!posterLoading ? (
-          <div className='mt-10 w-full mx-auto'>
-            <motion.div
-              className='flex flex-wrap gap-4 items-center justify-center w-full mx-auto'
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.4 }}
-              ref={parent}
-            >
-              {!loading ? (
-                <>
-                  {filteredPrograms.length > 0 ? (
-                    filteredPrograms.map((program, index) => (
-                      <motion.button
-                        key={index}
-                        onClick={() => handleProgramSelect(program)}
-                        style={{ backgroundColor: colors[index % colors.length] }}
-                        className='bg-[#605F5F] border-[1.6px] cursor-pointer border-b-[4px] hover:border-b-[2px] border-borderColor px-4 py-1 text-white font-semibold rounded-none shadow-md flex items-center justify-center leading-5 relative'
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.4 }}
-                        // whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {extractValidText(program?.name)}
-                        {isNewRelease(program?.last_updated) && (
-                          <span className='text-[10px] bg-red-500 text-white px-1 py-[0.1px] rounded-md ml-2 absolute -top-3 -right-4'>
-                            New
-                          </span>
-                        )}
-                      </motion.button>
-                    ))
-                  ) : (
-                    programs.length === 0 ? (
-                      <div>
-                        <p className='text-gray-500 flex flex-col text-center'>
-                          Not Results Published Yet {console.log(programs.length)}
-                        </p>
-                      </div>
-                    ) : (
-                      <motion.p
-                        className='text-gray-500 flex flex-col text-center'
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        No Results found.
-                        <img src={Empty} alt="empty" className="mt-2 max-w-[380px]" />
-                      </motion.p>
-                    )
-                  )}
-                </>
-              ) : (
-                <div className='flex items-center justify-center w-full py-6'>
-                  {/* <Loader className='animate-spin' /> */}
-                  <img src={Loading} alt="loading" className="max-w-[360px]" />
-                </div>
-              )}
-            </motion.div>
-          </div>
-        ) : (
-          <div className='flex items-center justify-center w-full py-6'>
-            <img src={Loading} alt="loading" className="max-w-[360px]" />
-          </div>
-        )}
-      </section>
-
-      <Dialog open={isDialogOpen} onOpenChange={handleOpenChange}>
-        <DialogContent className="max-h-[90dvh] min-h-fit overflow-y-auto p-0 scale-100 lg:scale-125">
-          <DialogHeader>
-            <DialogTitle></DialogTitle>
-            <DialogDescription></DialogDescription>
-            <div className='pb-4'>
-              <div className='min-h-[400px]'>
-                {/* {loadingPoster ? (
+        {selectedProgram && (
+          < div className='min-h-[400px] pb-4'>
+            {/* {loadingPoster ? (
                   <div className='flex items-center justify-center py-4'>
                     <Loader className='animate-spin' />
                   </div>
                 ) : ( */}
-                <div className='flex items-center justify-center pt-6'>
-                  <div className='w-fit h-fit' id='resultPosterId'>
-                    <Poster data={selectedProgram} />
-                  </div>
+            <div className='flex items-center justify-center pt-6'  ref={parent}>
+              {posterLoading ? (
+                <div className='w-full h-full min-h-[400px] max-w-[360px] bg-slate-200 animate-pulse'>
                 </div>
-                {/* )} */}
-
-                <div className='flex items-center justify-center gap-2 mt-4 max-w-[300px] mx-auto'>
-                  <button onClick={handleShare} className='flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300' ><Share2 className='w-4 h-4' /><p className='font-semibold'>Share</p></button>
-                  <button onClick={handleDownload} className='flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300' > <Download className='w-4 h-4' /><p className='font-semibold'>Download</p></button>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4 }}
+                >
+                <div className='w-fit h-fit' id='resultPosterId'>
+                  <Poster data={selectedProgram} />
                 </div>
-              </div>
+                </motion.div>
+              )}
 
             </div>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+            {/* )} */}
+
+            <div className='flex items-center justify-center gap-2 mt-4 max-w-[300px] mx-auto'>
+              <button onClick={handleShare} className='flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300' ><Share2 className='w-4 h-4' /><p className='font-semibold'>Share</p></button>
+              <button onClick={handleDownload} className='flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300' > <Download className='w-4 h-4' /><p className='font-semibold'>Download</p></button>
+            </div>
+          </div>
+        )
+        }
+
+        {/* Program List */}
+        {/* { */}
+            <div className='mt-10 w-full mx-auto'>
+              <motion.div
+                className='flex flex-wrap gap-4 items-center justify-center w-full mx-auto'
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.4 }}
+                ref={parent}
+              >
+                {!loading ? (
+                  <>
+                    {filteredPrograms.length > 0 ? (
+                      filteredPrograms.map((program, index) => (
+                        <motion.button
+                          disabled={program?._id === selectedProgram?.id}
+                          key={index}
+                          onClick={() => handleProgramSelect(program)}
+                          style={{ backgroundColor: colors[index % colors.length] }}
+                          className='bg-[#605F5F] border-[1.6px] cursor-pointer border-b-[4px] hover:border-b-[2px] border-borderColor px-4 py-1 text-white font-semibold rounded-none shadow-md flex items-center justify-center leading-5 relative disabled:!opacity-50 disabled:!cursor-not-allowed'
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 20 }}
+                          transition={{ duration: 0.4 }}
+                          // whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          {extractValidText(program?.name)}
+                          {isNewRelease(program?.last_updated) && (
+                            <span className='text-[10px] bg-red-500 text-white px-1 h-[16px] flex items-center justify-center py-[0.1px] rounded-md ml-2 absolute -top-2 -right-3'>
+                              New
+                            </span>
+                          )}
+                        </motion.button>
+                      ))
+                    ) : (
+                      programs.length === 0 ? (
+                        <div>
+                          <p className='text-gray-500 flex flex-col text-center'>
+                            Not Results Published Yet
+                          </p>
+                        </div>
+                      ) : (
+                        <motion.p
+                          className='text-gray-500 flex flex-col text-center'
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          No Results found.
+                          <img src={Empty} alt="empty" className="mt-2 max-w-[380px]" />
+                        </motion.p>
+                      )
+                    )}
+                  </>
+                ) : (
+                  <div className='flex items-center justify-center w-full py-6'>
+                    {/* <Loader className='animate-spin' /> */}
+                    <img src={Loading} alt="loading" className="max-w-[360px]" />
+                  </div>
+                )}
+              </motion.div>
+            </div>
+          {/* // ) : (
+          //   <div className='flex items-center justify-center w-full py-6'>
+          //     <img src={Loading} alt="loading" className="max-w-[360px]" />
+          //   </div>
+          // )
+        // } */}
+      </section >
+
+
 
 
       {/* <Poster /> */}
