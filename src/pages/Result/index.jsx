@@ -43,7 +43,7 @@ function Index() {
         // console.log(data);
         const sortData = data?.data.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
         setPrograms(sortData);
-
+        console.log(sortData);
         handleProgramSelect(sortData[0]);
       } catch (error) {
         console.error(error);
@@ -65,11 +65,19 @@ function Index() {
 
   }, [searchTerm, programs]);
 
+  useEffect(() => {
+    if (selectedProgram) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [selectedProgram]);
+
   const handleProgramSelect = async (program) => {
     // if (program._id === selectedProgram?.id) {
     //   alert('Already selected');
     //   return;
     // }
+    
+
     setSelectedProgram(program);
     setPosterLoading(true);
 
@@ -146,7 +154,6 @@ function Index() {
   };
 
 
-
   const isNewRelease = (dateString) => {
     // console.log(dateString);
     const currentDate = new Date();
@@ -155,6 +162,7 @@ function Index() {
     // Calculate the difference in hours
     const timeDifference = Math.abs(currentDate - programDate) / (1000 * 60);
     // console.log(timeDifference <= 80);
+    console.log(timeDifference <= 30);
     return timeDifference <= 30;
   };
 
@@ -234,7 +242,7 @@ function Index() {
   }
 
   return (
-    <div className='w-full p-4'>
+    <div className='w-full p-4 z-10 relative'>
       <Header title="Results" href="/" />
       <section className='max-w-[700px] mx-auto' ref={parent}>
         <div className='mt-10'>

@@ -9,7 +9,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Space Grotesk", serif;
+  font-family: "Space Grotesk", 'Arial' ,serif;
+  scroll-behavior: smooth;
 }
 
 @layer base {

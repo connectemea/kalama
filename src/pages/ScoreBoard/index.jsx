@@ -23,7 +23,7 @@ function CollegeIcon({ color = 'white' }) {
 function Index() {
   const [activeTab, setActiveTab] = useState('college');
   const [colleges, setColleges] = useState([]);
-
+  const [ResultCount, setResultCount] = useState(0);
   const [individuals, setIndividuals] = useState([]);
   const [individualAllRounder, setIndividualAllRounder] = useState([]);
 
@@ -42,7 +42,7 @@ function Index() {
         // Sort colleges by their total score
         const sortedColleges = data.data.results.sort((a, b) => b.totalScore - a.totalScore);
         setColleges(sortedColleges);
-        
+        setResultCount(data.data?.totalResultCount);
 
         // Prepare the formatted data for individual all-rounder categories
         const formattedData = [
@@ -145,7 +145,7 @@ function Index() {
         ) : (
           <div className=''>
             {/* {console.log(individuals)} */}
-            {activeTab === 'college' ? <CollegeTab data={colleges} /> : <IndividualTab data={individuals} />}
+            {activeTab === 'college' ? <CollegeTab data={colleges} ResultCount={ResultCount} /> : <IndividualTab data={individuals} />}
           </div>
 
         )}
