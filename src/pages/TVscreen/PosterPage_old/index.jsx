@@ -2,12 +2,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick"
 import Poster from '@/components/Poster';
-import React, { useRef, useState ,useEffect} from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import React ,{ useState, useEffect } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 function index() {
      const [colleges, setColleges] = useState([]);
@@ -115,8 +111,64 @@ function index() {
             }
         };
 
+  const settings = {
+    dots: true,
+    fade: true,
+    centerMode: true,
+    infinite: true,
+    autoplay: true,
+    speed: 2000,
+    centerPadding: "60px",
+    autoplaySpeed: 4000,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    swipeToSlide: true,
+    waitForAnimate: false,
+    appendDots: (dots) => {
+      if (!dots || dots.length === 0) {
+        return (
+          <div className="dots-container">
+            <ul className="custom-dots"></ul>
+          </div>
+        );
+      }
+
+      const totalDots = dots.length;
+
+      // Find the active dot index
+      const activeIndex = dots.findIndex(dot =>
+        dot.props.className.includes("slick-active")
+      );
+
+      // Ensure that we are always showing 3 dots and that the active dot is included
+      let start = activeIndex - 1; // Show one dot before the active dot
+      let end = activeIndex + 2; // Show one dot after the active dot
+
+      // Adjust the start and end indices to always show 3 dots
+      if (start < 0) {
+        start = 0;
+        end = Math.min(start + 3, totalDots); // Ensure we don't exceed the total number of dots
+      }
+      if (end > totalDots) {
+        end = totalDots;
+        start = Math.max(0, totalDots - 3); // Adjust the start to show the last 3 dots
+      }
+
+      return (
+        <div className="dots-container">
+          <ul className="custom-dots">
+            {dots.slice(start, end)} {/* Always show 3 dots */}
+          </ul>
+        </div>
+      );
+    },
+    customPaging: (i) => (
+      <div className="custom-dot"></div>
+    ),
+  };
+
   if (loading) {
-    return <div key={index} className=' mx-auto  rounded-[50px] bg-white/20  min-w-fit max-w-[600px] my-10 min-h-[300px] mb-20 overflow-hidden'><div className="min-w-[380px] min-h-[400px] bg-slate-200 animate-pulse text-center scale-125">Loading...</div>
+    return <div key={index} className='border border-customBlue  rounded-[50px] bg-white/20  min-w-fit max-w-[600px] min-h-[300px] mb-20 overflow-hidden'><div className="min-w-[380px] min-h-[400px] bg-slate-200 animate-pulse text-center scale-125">Loading...</div>
     </div>
   }
 
@@ -126,32 +178,23 @@ function index() {
 
   return (
     <section>
-      <div className=" mx-auto overflow-hidden flex justify-center items-center  p-4">
-      <Swiper
-       centeredSlides={true}
-       autoplay={{
-         delay: 10000,
-         disableOnInteraction: false,
-       }}
-        slidesPerView={3}
-        spaceBetween={10}
-        loop={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        pagination={{
-          clickable: true,
-        }}
-        className="mySwiper"
-      >
-         {programs.map((poster, index) => (
-             <SwiperSlide className="flex items-center justify-center">
-            <div key={index} className='  mb-10 rounded-[50px]   overflow-hidden flex items-center justify-center'>
+      <div className="slider-container min-w-[600px] mx-auto overflow-hidden">
+        <Slider {...settings} className='min-w-[360px]  mx-auto  mt-24'>
+          {/* {programs.map((poster, index) => (
+            <div key={index} className='border border-customBlue  mb-10 rounded-[50px] bg-white/20  min-w-fit max-w-[600px] min-h-[300px]  overflow-hidden'>
               <Poster data={poster} />
             </div>
-            </SwiperSlide>
-          ))}
-      </Swiper>
-         
-          
+          ))} */}
+           <div className='border border-customBlue  mb-10 rounded-[50px] bg-white/20  min-w-fit max-w-[600px] min-h-[300px]  overflow-hidden'>
+              <Poster data={programs[0]} />
+            </div>
+            <div className='border border-customBlue  mb-10 rounded-[50px] bg-white/20  min-w-fit max-w-[600px] min-h-[300px]  overflow-hidden'>
+              <Poster data={programs[1]} />
+            </div>
+            <div className='border border-customBlue  mb-10 rounded-[50px] bg-white/20  min-w-fit max-w-[600px] min-h-[300px]  overflow-hidden'>
+              <Poster data={programs[2]} />
+            </div>
+        </Slider>
       </div>
     </section>
   )

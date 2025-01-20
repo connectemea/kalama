@@ -50,7 +50,7 @@ function CollegeTab({ data }) {
                         className="ring-0 focus:ring-0 focus:outline-none w-full pl-2"
                     />
                 </div>
-                <div ref={parent}>
+                <div ref={parent} className='max-w-[360px] flex flex-col mx-auto'>
                     {filteredData.length > 0 ? filteredData.slice(0, 10).map((college, index) => {
                         return (
                             <CollegeCard key={index} college={college} />

@@ -82,7 +82,7 @@ function index({ data }) {
     console.log(data,+'my slide')
 
     return (
-        <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden justify-between`}>
+        <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden justify-between bg-white`}>
 
             <img src={data?.stageStatus ? topElement : topElementOnstage} alt="topElement" className='absolute top-0 left-0 w-full max-w-[70px]' />
             <img src={data?.stageStatus ? rightElement : rightElementOnstage} alt="rightElement" className='absolute bottom-0 right-0 z-10 max-w-[50px]' />
