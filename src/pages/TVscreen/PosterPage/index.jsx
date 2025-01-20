@@ -11,9 +11,9 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { motion } from 'motion/react'
 
 function index({ loading, programs }) {
-    const [activeIndex, setActiveIndex] = useState(0);
+
     if (!programs) {
-        return <div>No data available</div>;
+        return <div className="flex h-[80vh] justify-center items-center font-semibold text-xl">No data available</div>;
     }
 
     return (
@@ -41,7 +41,7 @@ function index({ loading, programs }) {
                                 key={index}
                                 className={`flex items-center justify-center h-full transition-transform duration-500 `}
                             >
-                                <div className="h-full flex items-center justify-center overflow-hidden min-w-[280px] min-h-[300px] bg-slate-200 animate-pulse text-center"></div>
+                                <div className="h-full flex items-center justify-center overflow-hidden min-w-[280px] max-w-[380px] max-h-[500px] min-h-[300px] bg-slate-200 animate-pulse text-center"></div>
                             </SwiperSlide>
                         ))}
 

@@ -34,7 +34,7 @@ function Index() {
 
         const intervalId2 = setInterval(() => {
             setShowPoster(!showPoster);
-        }, 1000 * (showPoster ? 10 : 4));
+        }, 1000 * (showPoster ? 10 : 40));
 
         // Cleanup the interval when the component is unmounted or the effect re-runs
         return () => clearInterval(intervalId, intervalId2);
