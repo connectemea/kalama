@@ -144,10 +144,10 @@ function Index() {
   const isNewRelease = (dateString) => {
     // console.log(dateString);
     const currentDate = new Date();
-    const programDate = new Date(dateString);
+    const programDate = new Date(dateString); 
 
     // Calculate the difference in hours
-    const timeDifference = Math.abs(currentDate - programDate) / (1000 * 60 * 60);
+    const timeDifference = Math.abs(currentDate - programDate) / (1000 * 60);
     // console.log(timeDifference <= 80);
     return timeDifference <= 30;
   };
@@ -230,7 +230,7 @@ function Index() {
   return (
     <div className='w-full p-4'>
       <Header title="Results" href="/" />
-      <section className='max-w-[700px] mx-auto'>
+      <section className='max-w-[700px] mx-auto' ref={parent}>
         <div className='mt-10'>
           {/* Search Box */}
           <div className="flex items-center justify-center w-full p-2 border border-gray-800 shadow-sm max-w-[400px] mx-auto focus-within:border-blue-500 focus-within:shadow-md">
@@ -245,7 +245,7 @@ function Index() {
           </div>
 
         </div>
-        {filteredPrograms.length > 0 && selectedProgram && (
+        {filteredPrograms.length > 0 && selectedProgram && !searchTerm && (
           < div className='min-h-[400px] pb-4'>
             {/* {loadingPoster ? (
                   <div className='flex items-center justify-center py-4'>
