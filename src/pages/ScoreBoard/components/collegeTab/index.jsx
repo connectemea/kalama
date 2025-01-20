@@ -51,7 +51,7 @@ function CollegeTab({ data, ResultCount }) {
                     />
                 </div>
                 <div className='flex mb-4 items-center justify-center text-center bg-black w-fit gap-2 mx-auto text-white font-semibold px-2 py-[1px]'>
-                    After <div className='text-[#ccff00]'>{ResultCount || "30"}</div>Results
+                    After <div className='text-[#ccff00]'>{ResultCount || "..."}</div>Results
                 </div>
                 <div ref={parent} className='max-w-[360px] flex flex-col mx-auto'>
                     {filteredData.length > 0 ? filteredData.slice(0, 10).map((college, index) => {
