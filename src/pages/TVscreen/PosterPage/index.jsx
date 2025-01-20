@@ -13,7 +13,7 @@ import { motion } from 'motion/react'
 function index({ loading, programs }) {
 
     if (!programs) {
-        return <div className="flex h-[80vh] justify-center items-center font-semibold text-xl">No data available</div>;
+        return <div className="flex h-[80vh] justify-center items-center font-semibold text-xl text-black bg-slate-100 animate-pulse">No data available</div>;
     }
 
     return (
