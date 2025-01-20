@@ -7,15 +7,15 @@ function index({ individual, index, title, individualIndex  }) {
     function pickShadowColor(index) {
         switch (index) {
             case 0:
-                return '1.5px 1.5px 5px #8DC63F';
+                return '1.5px 1.5px 2px #8DC63F80';
             case 1:
-                return '1.5px 1.5px 5px #00A99D';
+                return '1.5px 1.5px 2px #00A99D80';
             case 2:
-                return '1.5px 1.5px 5px #3592BA';
+                return '1.5px 1.5px 2px #3592BA80';
             case 3:
-                return '1.5px 1.5px 5px #F99D1C';
+                return '1.5px 1.5px 2px #F99D1C80';
             default:
-                return '1.5px 1.5px 1px #3592BA';
+                return '1.5px 1.5px 1px #3592BA80';
         }
     }
     return (

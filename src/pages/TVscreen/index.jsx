@@ -14,10 +14,7 @@ function Index() {
     const [individuals, setIndividuals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [programs, setPrograms] = useState([]);
-    const [filteredPrograms, setFilteredPrograms] = useState([]);
     const ApiUrl = import.meta.env.VITE_API_URL;
-    const [PosterLoading, setPosterLoading] = useState(true);
-
     const [showPoster, setShowPoster] = useState(false);
 
     const [parent] = useAutoAnimate()
@@ -25,19 +22,19 @@ function Index() {
 
     useEffect(() => {
         fetchData(); // Initial fetch
-    
+
         const intervalId = setInterval(fetchData, 50000); // Fetch data every 50 seconds
-    
+
         let switchInterval;
-    
+
         const startSwitching = () => {
             switchInterval = setInterval(() => {
                 setShowPoster(prev => !prev);
             }, showPoster ? 40000 : 10000); // 10s leaderboard, 40s poster
         };
-    
+
         startSwitching(); // Start switching logic
-    
+
         return () => {
             clearInterval(intervalId);
             clearInterval(switchInterval);
@@ -49,7 +46,7 @@ function Index() {
         try {
             const [leaderboardResponse, eventsResponse] = await Promise.all([
                 fetch(`${ApiUrl}/results/leaderboard`),
-                fetch(`${ApiUrl}/events/resultPublished`)
+                fetch(`${ApiUrl}/results`)
             ]);
 
             // Handling Leaderboard Data
@@ -102,16 +99,11 @@ function Index() {
 
             setIndividuals(formattedData);
 
-            // Handling Event Data
             const eventsData = await eventsResponse.json();
             const programsList = eventsData?.data || [];
-            setFilteredPrograms(programsList.slice(0, 4));
-
-            // Fetch program data for each event
-            setPrograms([]);
-            for (let program of programsList.slice(0, 4)) {
-                await handleProgramSelect(program);
-            }
+            const formattedProgramsData = formatResults(programsList);
+            // setFilteredPrograms(formattedProgramsData);
+            setPrograms(formattedProgramsData);
 
         } catch (error) {
             console.error('Error fetching leaderboard or event data:', error);
@@ -120,30 +112,37 @@ function Index() {
         }
     };
 
-    const handleProgramSelect = async (program) => {
-        try {
-            setPosterLoading(true)
-            const response = await fetch(`${ApiUrl}/result/event/${program._id}`, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-            });
-            setPosterLoading(true)
-            if (!response.ok) throw new Error('Failed to fetch program data');
+    const formatResults = (data) => {
+        return data.map((program) => ({
+            programName: program.event.name, // Event Name
+            id: program._id, // Event ID
+            result_no: program.serial_number, // Serial Number
+            stageStatus: program.event.event_type.is_onstage, // Is it an onstage event?
+            is_group: program.event.event_type.is_group, // Is it a group event?
+            winners: program.winningRegistrations.reduce((acc, winner) => {
+                if (program.event.event_type.is_group) {
+                    // Group Winner - College Name as Winner
+                    const positionIndex = acc.findIndex(w => w.position === winner.position);
+                    const newUser = {
+                        name: winner.eventRegistration.participants[0].user.college || "Unknown College",
+                    };
 
-            const { data } = await response.json();
-
-            const formattedData = data.map((program) => ({
-                programName: program.name,
-                id: program._id,
-                result_no: program.serial_number,
-                stageStatus: program.is_onstage,
-                is_group: program.is_group,
-                winners: program.winningRegistrations.reduce((acc, winner) => {
-                    if (program.is_group && winner.eventRegistration.collegeName) {
-                        // Group Winners
+                    if (positionIndex === -1) {
+                        acc.push({
+                            position: winner.position,
+                            users: [newUser]
+                        });
+                    } else {
+                        acc[positionIndex].users.push(newUser);
+                    }
+                } else {
+                    // Individual Winners - Name, College, Year
+                    winner.eventRegistration.participants.forEach((participant) => {
                         const positionIndex = acc.findIndex(w => w.position === winner.position);
                         const newUser = {
-                            name: winner.eventRegistration.collegeName
+                            name: participant.user.name,
+                            college: participant.user.college || "Unknown College",
+                            year: participant.user.year_of_study || "N/A"
                         };
 
                         if (positionIndex === -1) {
@@ -154,47 +153,13 @@ function Index() {
                         } else {
                             acc[positionIndex].users.push(newUser);
                         }
-                    } else {
-                        // Individual Winners
-                        winner.eventRegistration.participants.user.forEach((participant) => {
-                            const positionIndex = acc.findIndex(w => w.position === winner.position);
-                            const newUser = {
-                                name: participant.name,
-                                college: participant.college || "Unknown College",
-                                year: participant.year_of_study || "N/A"
-                            };
-
-                            if (positionIndex === -1) {
-                                acc.push({
-                                    position: winner.position,
-                                    users: [newUser]
-                                });
-                            } else {
-                                acc[positionIndex].users.push(newUser);
-                            }
-                        });
-                    }
-                    return acc;
-                }, []).sort((a, b) => a.position - b.position),
-            }));
-
-            // Avoid adding duplicate programs by checking the id
-            setPrograms((prev) => {
-                // Check if program with the same id already exists
-                const existingProgram = prev.find(item => item.id === formattedData[0].id);
-                if (existingProgram) {
-                    return prev;  // If exists, return the current state unchanged
-                } else {
-                    return [...prev, formattedData[0]];  // Otherwise, add the new program
+                    });
                 }
-            });
-            if (programs.length === 4) {
-                setPosterLoading(false);
-            }
-        } catch (error) {
-            console.error('Failed to select program', error);
-        }
+                return acc;
+            }, []).sort((a, b) => a.position - b.position), // Sorting winners by position
+        }));
     };
+
 
     return (
         <div className="w-full h-[100vh] relative overflow-hidden p-4 select-none">
