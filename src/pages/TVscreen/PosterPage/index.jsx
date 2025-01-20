@@ -32,7 +32,7 @@ function index({ loading, programs }) {
             }
         };
 
-        setTimeout(checkAndStartAutoplay, 1000); // Small delay to ensure Swiper is initialized
+        setTimeout(checkAndStartAutoplay, 2000); // Small delay to ensure Swiper is initialized
     }, [loading]);
 
 
@@ -47,7 +47,7 @@ function index({ loading, programs }) {
                     ref={swiperRef}
                     centeredSlides={true}
                     autoplay={{
-                        delay: 5000,
+                        delay: 10000,
                         disableOnInteraction: false,
                     }}
                     // autoplay={true}
