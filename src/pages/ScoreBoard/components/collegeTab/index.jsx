@@ -28,7 +28,7 @@ function CollegeTab({ data, ResultCount }) {
     );
 
     return (
-        <div className="">
+        <div className="z-10">
             {/* <div className='flex items-start justify-end max-w-[275px] mx-auto'>
                 <button className="flex items-center gap-2 border border-gray-700 px-2 text-[13px] py-1">
                 <Share2 size={16} className='fill-black'/>

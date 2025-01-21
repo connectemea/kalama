@@ -32,7 +32,7 @@ function IndividualTab({ data }) {
 
 
     return (
-        <div className=" mt-10">
+        <div className=" mt-10 z-10">
             {data.length ? data.map((category, index) => {
                 // Only proceed if winners exist in the category
                 if (category.winners.length === 0) return null;
@@ -54,7 +54,7 @@ function IndividualTab({ data }) {
 
                                 {/* Show More Button */}
                                 {otherWinners.length > 0 && (
-                                    <div className='flex items-end justify-end w-full mb-6'>
+                                    <div className='flex items-end justify-end w-full mb-6 z-10'>
                                         <button
                                             onClick={() => toggleExpand(index)}
                                             className="block px-4 py-1 border border-black text-black  font-bold  "

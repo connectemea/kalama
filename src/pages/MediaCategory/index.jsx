@@ -110,7 +110,7 @@ function Results() {
                     <div key={categoryData.category_name} className="w-full" ref={parent}>
                         <div className="flex flex-wrap justify-center gap-6">
                             {categoryData.events.map((event, eventIndex) => (
-                                <div key={eventIndex} className="bg-white shadow-md rounded-none max-w-[300px] w-full h-fit border min-h-[250px]">
+                                <div key={eventIndex} className="bg-white shadow-md rounded-none max-w-[300px] w-full h-fit border min-h-[200px]">
                                     <h3 className="text-lg font-semibold text-center bg-customBlue text-white px-2 py-1 min-h-[60px] flex items-center justify-center">
                                         {event.event_name} {event.is_group && "(Group Event)"}
                                     </h3>
