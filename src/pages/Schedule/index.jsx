@@ -139,7 +139,7 @@ function Schedule() {
         <div className="mb-4 mx-auto max-w-[600px]">
 
           {/* Search Box */}
-          <div className="flex items-center justify-center w-full p-2 border border-gray-800 shadow-sm max-w-[400px] mx-auto focus-within:border-blue-500 focus-within:shadow-md">
+          <div className="flex items-center justify-center w-full p-2 border border-gray-800 shadow-sm max-w-[400px] mx-auto focus-within:border-blue-500 focus-within:shadow-md px-4">
             <img src={SearchIcon} alt="Search Icon" className="w-6 h-6" />
             <input
               type="search"

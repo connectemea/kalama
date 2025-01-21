@@ -77,14 +77,27 @@ function index({ data }) {
         return result_no.toString().padStart(3, '0');
     }
 
-    function extractValidText(text) {
+    function ExtractedText(text) {
         if (!text) {
-            return '';
+          return null;
         }
-        const match = text?.match(/^(.*?\s*\(EASTERN\)|.*?\s*\(WESTERN\))/);
-        // console.log(match);
-        return match ? match[1].trim() : text;
-    }
+      
+        const match = text.match(/^(.*?\s*)(\(EASTERN\)|\(WESTERN\))\s*(.*)?/);
+      
+        return (
+          <span>
+            {match ? (
+              <>
+                {match[1]} {/* Normal text before (EASTERN) */}
+                {match[2]} {/* Normal (EASTERN) or (WESTERN) */}
+                {match[3] && <span className="flex text-center mx-auto items-center justify-center" style={{ fontSize: "0.7em" }}> {match[3]}</span>}
+              </>
+            ) : (
+              text
+            )}
+          </span>
+        );
+      }
     // console.log(data,+'my slide')
 
     const RemoveComma = (text = "") => {
@@ -125,7 +138,7 @@ function index({ data }) {
                         <span className={classNames('text-[14px] font-semibold text-center wordIssue',
                             {
                                 'text-[12px] ': data?.programName?.length > 20,
-                            })}>{extractValidText(data?.programName)}</span>
+                            })}>{ExtractedText(data?.programName)}</span>
                     </div>
                     <div className="mt-3 space-y-4 h-fit">
                         {data?.winners?.map((winner, index) => (
@@ -202,7 +215,7 @@ function index({ data }) {
                             }
                         )}>
                             <img src={CreatorLogo} alt="" className='w-8' />
-                            <img src={sponserLogo} alt="" className='w-8' />
+                            <img src={sponserLogo} alt="" className='w-11' />
                         </div>
                     </div>
                 </div>

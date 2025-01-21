@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/ui/Header';
 import { SearchIcon } from '@/assets/icons';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { Share2, Download, Loader } from 'lucide-react'
 import html2canvas from 'html2canvas';
 import ReactGA from "react-ga4";
@@ -76,7 +68,7 @@ function Index() {
     //   alert('Already selected');
     //   return;
     // }
-    
+
 
     setSelectedProgram(program);
     setPosterLoading(true);
@@ -235,10 +227,26 @@ function Index() {
 
   const colors = ['#3592BA', '#00A99D', '#8DC63F', '#FF5733', '#FFC300'];
 
-  function extractValidText(text) {
-    const match = text.match(/^(.*?\s*\(EASTERN\)|.*?\s*\(WESTERN\))/);
-    // console.log(match);
-    return match ? match[1].trim() : text;
+  function ExtractedText(text) {
+    if (!text) {
+      return null;
+    }
+  
+    const match = text.match(/^(.*?\s*)(\(EASTERN\)|\(WESTERN\))\s*(.*)?/);
+  
+    return (
+      <span>
+        {match ? (
+          <>
+            {match[1]} {/* Normal text before (EASTERN) */}
+            {match[2]} {/* Normal (EASTERN) or (WESTERN) */}
+            {match[3] && <span style={{ fontSize: "0.7em" }}> {match[3]}</span>}
+          </>
+        ) : (
+          text
+        )}
+      </span>
+    );
   }
 
   return (
@@ -322,7 +330,7 @@ function Index() {
                       // whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      {extractValidText(program?.name)}
+                      {ExtractedText(program?.name)}
                       {isNewRelease(program?.last_updated) && (
                         <span className='text-[10px] bg-red-500 text-white px-1 h-[16px] flex items-center justify-center py-[0.1px] rounded-md ml-2 absolute -top-2 -right-3'>
                           New
