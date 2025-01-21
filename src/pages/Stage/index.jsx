@@ -34,7 +34,7 @@ function Stage() {
                   key={index}
                   className="p-2  text-black border border-borderColor  flex justify-between items-center gap-4"
                 >
-                  <h2 className="text-lg font-bold max-w-[400px] leading-6">{program.name}</h2>
+                  <h2 className="text-lg font-bold max-w-[400px] leading-6 overflow-auto">{program.name}</h2>
                   <p className={classNames("text-sm  border border-borderColor px-2 font-semibold text-white whitespace-nowrap",
                     {
                       'bg-[#3592BA]': id % 3 === 2,

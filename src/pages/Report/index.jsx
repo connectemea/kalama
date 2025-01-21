@@ -95,7 +95,7 @@ function ResultsFull() {
             ) : (
                 <div id="group-event-results" className="flex flex-wrap justify-center gap-6" ref={parent}>
                     {filteredResults.map((event, index) => (
-                        <div key={index} className="bg-white shadow-md rounded-lg max-w-[400px] w-full border min-h-[250px] h-fit">
+                        <div key={index} className="bg-white shadow-md rounded-lg max-w-[400px] w-full border min-h-[250px]">
                             <h3 className="text-lg font-semibold text-center bg-customBlue text-white px-4 py-2">
                                 {event.event_name} (Group Event)
                             </h3>

@@ -1,4 +1,4 @@
-import { Home, NotFound, Result, Schedule, Stage, ScoreBoard, TVscreen, Media, Report } from './pages';
+import { Home, NotFound, Result, Schedule, Stage, ScoreBoard, TVscreen, Media, Report , Media2} from './pages';
 import Layout from '@/components/layout';
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import ReactGA from "react-ga4";
@@ -32,6 +32,10 @@ const routes = [
       {
         path: "firstprize",
         element: <Media />,
+      },
+      {
+        path: "categoryevents",
+        element: <Media2 />,
       },
       {
         path: "winners/groupevents",
