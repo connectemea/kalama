@@ -30,6 +30,17 @@ function Results() {
         }
     };
 
+    const filteredResults = formattedCategoryResults.map(category => ({
+        ...category,
+        events: category.events.map(event => ({
+            ...event,
+            winners: event.winners.filter(winner =>
+                winner.name.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+        })).filter(event => event.winners.length > 0) // Remove events with no matching winners
+    })).filter(category => category.events.length > 0); // Remove empty categories
+
+
     const formatResultsCategory = (events) => {
         const groupedResults = events.reduce((acc, event) => {
             const category = event.event.result_category || "Uncategorized";
@@ -63,7 +74,22 @@ function Results() {
 
     return (
         <div className="min-h-screen p-6 w-full z-10">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">🏆 Event Winners (1st Position)</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">🏆 Category Event Winners</h2>
+
+            <div className='my-10'>
+                {/* Search Box */}
+                <div className="flex items-center justify-center w-full p-2 border border-gray-800 shadow-sm max-w-[400px] mx-auto focus-within:border-blue-500 focus-within:shadow-md">
+                    <img src={SearchIcon} alt="Search Icon" className="w-6 h-6" />
+                    <input
+                        type="text"
+                        placeholder="Search programs..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="ring-0 focus:ring-0 focus:outline-none w-full pl-2"
+                    />
+                </div>
+
+            </div>
 
             {/* Tab Navigation */}
             <div className="flex justify-center space-x-4 mb-6 border-b pb-2">
@@ -79,7 +105,7 @@ function Results() {
             </div>
 
             {/* Category Data */}
-            {formattedCategoryResults.map((categoryData) => (
+            {filteredResults.map((categoryData) => (
                 activeTab === categoryData.category_name && (
                     <div key={categoryData.category_name} className="w-full" ref={parent}>
                         <div className="flex flex-wrap justify-center gap-6">
