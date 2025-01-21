@@ -10,10 +10,10 @@ function IndividualTab({ data }) {
 
     const toggleExpand = (index) => {
         setExpandedCategories((prev) => ({
-            ...prev,
-            [index]: !prev[index],
+            [index]: !prev[index], 
         }));
     };
+    
 
     function pickShadowColor(index) {
         switch (index) {

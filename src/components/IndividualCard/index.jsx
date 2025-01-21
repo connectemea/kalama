@@ -52,7 +52,9 @@ function index({ individual, index, title, individualIndex  }) {
                     <div className="flex flex-col gap-1 flex-1 flex-grow">
                         <div className="">
                             <p className="font-medium text-xl">{individual?.name}</p>
+                            {title !== "Kalaprathiba" && title !== "Kalathilakam" && (
                             <p className="text-sm min-h-[36px]">{individual?.college}</p>
+                            )}
                         </div>
                         <hr className="border-[1.5px] border-borderColor mb-1" />
                         <div className="flex items-end justify-end">
