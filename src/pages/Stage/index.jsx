@@ -19,7 +19,7 @@ function Stage() {
     <div className="w-full select-none">
       <Header title="Stage" href={`/schedule/${date}`} color={pickColor(id)} />
 
-      <section className='p-3 max-w-[500px] mx-auto mt-6'>
+      <section className='p-3 max-w-[500px] mx-auto mt-6 overflow-auto'>
         <div className='border-borderColor border p-2'>
           <div className={`text-center font-bold mb-1  ${(id) % 2 === 0 ? 'bg-[#605F5F]' : 'bg-black'} text-white p-4`}>
             <h1 className='text-2xl'>{stage.name || 'Stage Name'}</h1>

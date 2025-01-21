@@ -77,7 +77,7 @@ function Results() {
 
 
     return (
-        <div className="min-h-screen p-6 w-full">
+        <div className="min-h-screen p-6 w-full z-10">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">🏆 Event Winners (1st Position)</h2>
 
             <div className='my-10'>

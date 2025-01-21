@@ -101,7 +101,11 @@ function Index() {
 
             const eventsData = await eventsResponse.json();
             const programsList = eventsData?.data || [];
-            const formattedProgramsData = formatResults(programsList);
+            const sortedPrograms = programsList
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt (latest first)
+                .slice(0, 7); // Take the most recent 7 programs
+
+            const formattedProgramsData = formatResults(sortedPrograms);
             // setFilteredPrograms(formattedProgramsData);
             setPrograms(formattedProgramsData);
 

@@ -8,7 +8,7 @@ function Index() {
 
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col justify-around gap-10 min-h-[calc(100dvh-100px)] py-10 mx-auto  w-full overflow-x-hidden overflow-y-auto relative">
+    <div className="flex flex-col z-10 justify-around gap-10 min-h-[calc(100dvh-100px)] py-10 mx-auto  w-full overflow-x-hidden overflow-y-auto relative">
 
 <motion.div
     className="-z-10 absolute top-52 -left-56 w-[300px] h-[300px] bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 rounded-full blur-2xl opacity-40"

@@ -105,7 +105,7 @@ function Schedule() {
   }
 
   return (
-    <div className="w-full select-none">
+    <div className="w-full select-none z-10">
       <Header title="Schedule" href="/" />
 
       <section className='mt-10'>
@@ -167,7 +167,7 @@ function Schedule() {
                   filteredStages.map((stage, index) => (
                     <motion.div
                       key={index}
-                      className={`max-w-[400px] mx-auto `}
+                      className={`max-w-[400px] mx-auto overflow-auto`}
                       initial={{ opacity: 0, y: -50 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 50 }}
