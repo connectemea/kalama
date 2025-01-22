@@ -83,11 +83,11 @@ function index({ college }) {
             key={index}
             className={classNames(`flex justify-start gap-3 w-full flex-1 h-full min-h-[50px] bg-white items-center p-1  border border-b-[4px] mx-auto  ${pickBorderColor(college.rank)}`)}
         >
-            <div className="flex items-center gap-4 flex-1 w-full">
+            <div className="flex items-center gap-2 flex-1 w-full">
                 <div
                     className=" h-2 relative flex items-center justify-center font-bold text-white mr-4 pl-4"
                 >
-                    <span className="text-2xl z-20"> {college.rank}</span>
+                    <span className="text-2xl z-30"> {college.rank}</span>
 
                     <div className='z-10 absolute'>
                         <BgRank color={pickColor(college.rank)} />
@@ -108,7 +108,7 @@ function index({ college }) {
                         {college.collegeName}
                     </p>
                     <div className='flex items-center justify-center'>
-                        <span className={` px-2 text-xs h-fit py-[1px] w-[50px] whitespace-nowrap  text-white font-bold rounded-none  
+                        <span className={` px-2 text-xs h-fit py-[1px]  whitespace-nowrap  text-white font-bold rounded-none  
                 ${pickBgColor(college.rank)}`}>
                             {college.totalScore} Pts
                         </span>
