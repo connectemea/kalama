@@ -17,7 +17,7 @@ function Results() {
             const response = await fetch(`${ApiUrl}/results`);
             const result = await response.json();
 
-            console.log("API Response:", result);
+            // console.log("API Response:", result);
             if (!result || !result.data || !Array.isArray(result.data)) {
                 console.error("Invalid API response format:", result);
                 return;
@@ -42,7 +42,7 @@ function Results() {
                 }))
         })).filter(event => event.winners.length > 0);
 
-        console.log("Formatted Data:", formatted);
+        // console.log("Formatted Data:", formatted);
         setFormattedResults(formatted);
     };
 

@@ -11,7 +11,8 @@ import resultTxt from './result_txt.svg';
 import resultTxtOnstage from './result_txt_on.svg';
 import rightElement from './right_bg.svg';
 import rightElementOnstage from './right_bg_on.svg';
-import sponserLogo from './sponser_logo.svg';
+// import sponserLogo from './sponser_logo.svg';
+import sponserLogo from './sponser_logo2.jpg';
 import topElement from './top_corner.svg';
 import topElementOnstage from './top_corner_on.svg';
 import blur1 from './blur1.svg'
@@ -20,6 +21,9 @@ import blur3 from './blur3.svg'
 import blur4 from './blur4.svg'
 import blur5 from './blur5.svg'
 import blur6 from './blur6.svg'
+import leaderboard from './leaderboard_txt.svg';
+import left_element from './left_element.svg';
+import right_element from './right_element.svg';
 
 
 export {
@@ -44,5 +48,8 @@ export {
     blur3,
     blur4,
     blur5,
-    blur6
+    blur6,
+    leaderboard,
+    left_element,
+    right_element
 };

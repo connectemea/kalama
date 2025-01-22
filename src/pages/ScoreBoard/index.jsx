@@ -38,7 +38,7 @@ function Index() {
         const data = await response.json();
 
         // Log the raw data for debugging
-        
+
         // Sort colleges by their total score
         const sortedColleges = data.data.results.sort((a, b) => b.totalScore - a.totalScore);
         setColleges(sortedColleges);
@@ -95,15 +95,6 @@ function Index() {
 
         setIndividuals(formattedData);
 
-
-        // const topScorers = data.data?.topScorers?.map((scorer) => ({
-        //   name: scorer.name,
-        //   image: scorer.image,
-        //   college: scorer.college,
-        //   points: scorer.total_score,
-        // })).sort((a, b) => b.points - a.points) || [];
-        // setIndividualAllRounder(topScorers);
-
       } catch (error) {
         console.error('Error fetching leaderboard data:', error);
       } finally {
@@ -113,6 +104,8 @@ function Index() {
 
     fetchData();
   }, []);
+
+
 
 
   return (
@@ -140,6 +133,7 @@ function Index() {
             Individual
           </button>
         </div>
+
         {loading ? (
           <p className="text-center text-gray-500 mt-4">Loading...</p>
         ) : (

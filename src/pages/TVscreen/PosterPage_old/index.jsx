@@ -65,7 +65,7 @@ function index() {
     
                 const { data } = await response.json();
     
-                console.log(data);
+                // console.log(data);
                 const formattedData = data?.map((program) => ({
                     programName: program.name,
                     id: program._id,

@@ -7,7 +7,6 @@ import ReactGA from "react-ga4";
 import Poster from '@/components/Poster';
 import Empty from '@/assets/gifs/empty.gif';
 import Loading from '@/assets/gifs/loading_hand.gif';
-
 import { motion } from "motion/react";
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
@@ -35,7 +34,7 @@ function Index() {
         // console.log(data);
         const sortData = data?.data.sort((a, b) => new Date(b.last_updated) - new Date(a.last_updated));
         setPrograms(sortData);
-        console.log(sortData);
+        // console.log(sortData);
         handleProgramSelect(sortData[0]);
       } catch (error) {
         console.error(error);
@@ -154,7 +153,7 @@ function Index() {
     // Calculate the difference in hours
     const timeDifference = Math.abs(currentDate - programDate) / (1000 * 60);
     // console.log(timeDifference <= 80);
-    console.log(timeDifference <= 30);
+    // console.log(timeDifference <= 30);
     return timeDifference <= 30;
   };
 
@@ -231,9 +230,9 @@ function Index() {
     if (!text) {
       return null;
     }
-  
+
     const match = text.match(/^(.*?\s*)(\(EASTERN\)|\(WESTERN\))\s*(.*)?/);
-  
+
     return (
       <span>
         {match ? (
@@ -285,6 +284,7 @@ function Index() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.4 }}
                 >
+
                   <div className='w-fit h-fit' id='resultPosterId'>
                     <Poster data={selectedProgram} />
                   </div>
@@ -330,6 +330,7 @@ function Index() {
                       // whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                     >
+                      {/* {console.log(program)} */}
                       {ExtractedText(program?.name)}
                       {isNewRelease(program?.last_updated) && (
                         <span className='text-[10px] bg-red-500 text-white px-1 h-[16px] flex items-center justify-center py-[0.1px] rounded-md ml-2 absolute -top-2 -right-3'>
