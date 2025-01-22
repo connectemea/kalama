@@ -119,7 +119,7 @@ function CollegeTab({ data, ResultCount }) {
                 </div>
             </div>
 
-            <div className='max-w-[400px] mx-auto  mt-[500px] z-20' id="resultPosterId" >
+            <div className='max-w-[400px] mx-auto hidden mt-[500px] z-20' id="resultPosterId" >
                 <Poster2 data={data} ResultCount={ResultCount} />
             </div>
         </div >
