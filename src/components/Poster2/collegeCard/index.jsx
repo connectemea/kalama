@@ -87,7 +87,7 @@ function index({ college }) {
                 <div
                     className=" h-2 relative flex items-center justify-center font-bold text-white mr-4 pl-4"
                 >
-                    <span className="text-2xl z-30"> {college.rank}</span>
+                    <span className="text-2xl z-30 relative"> {college.rank}</span>
 
                     <div className='z-10 absolute'>
                         <BgRank color={pickColor(college.rank)} />

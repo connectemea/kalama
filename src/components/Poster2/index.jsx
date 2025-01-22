@@ -25,7 +25,7 @@ import {
 import classNames from 'classnames';
 import CollegeCard from './collegeCard';
 
-function index({ data }) {
+function index({ data ,ResultCount}) {
 
     // console.log(data);
 
@@ -122,7 +122,7 @@ function index({ data }) {
                         <img src={leaderboard} alt="" className='w-[200px] mb-2 pt-2' />
                     </div>
                     <div className='flex mb-4 text-sm items-center justify-center text-center bg-black w-fit gap-2 mx-auto text-white font-semibold px-2 py-[1px]'>
-                        After <div className='text-[#ccff00]'>65</div>Results
+                        After <div className='text-[#ccff00]'>{ResultCount}</div>Results
                     </div>
                     <div className="mt-3 space-y-[5px] h-fit px-2">
                         {top5Colleges.map((college, index) => (
