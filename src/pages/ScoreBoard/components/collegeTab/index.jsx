@@ -84,10 +84,11 @@ function CollegeTab({ data, ResultCount }) {
                     <div className='flex items-start justify-start text-center bg-black w-fit gap-2  text-white font-semibold px-2 py-[2px]'>
                         After <div className='text-[#ccff00]'>{ResultCount || "..."}</div>Results
                     </div>
-                    <button disabled={data.length === 0} className="flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed border border-gray-700 px-2 text-[13px] py-1" onClick={() => handleShare()}>
+                    <button disabled={true} className="flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed border border-gray-700 px-2 text-[13px] py-1" onClick={() => handleShare()}>
                         <Share2 size={16} className='fill-black' />
                         Share Now
                     </button>
+                    {/* data.length === 0 */}
                 </div>
                 <div ref={parent} className='max-w-[360px] flex flex-col mx-auto'>
                     {filteredData.length > 0 ? filteredData.slice(0, 10).map((college, index) => {
