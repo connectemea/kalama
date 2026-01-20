@@ -23,7 +23,7 @@ const Layout = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: .5, ease: "easeOut", delay: 2 }} className="flex justify-center items-center w-full relative">
         <img src={Logo_GloryBoard} alt="Logo" className="absolute bottom-16 z-10 bg-white left-0  right-0 mx-auto w-full max-w-[100px] cursor-pointer" onClick={handleClick} />
-        <img src={Page_bottom} alt="Bottom Left Avatar" className="absolute bottom-0 left-0 w-full max-w-[100vw]" />
+        <img src={Page_bottom} alt="Bottom Left Avatar" className="absolute bottom-0 left-0 w-full max-w-[100vw] md:hidden" />
       </motion.footer>
     </div>
   );
