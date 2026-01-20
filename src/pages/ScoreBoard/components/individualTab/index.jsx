@@ -3,7 +3,7 @@ import { useState } from 'react';
 import IndividualCard from '@/components/IndividualCard';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-function IndividualTab({ data }) {
+function IndividualTab({ data = [] }) {
     const [expandedCategories, setExpandedCategories] = useState({});
     const [parent] = useAutoAnimate()
     // console.log(data)
@@ -33,9 +33,6 @@ function IndividualTab({ data }) {
 
     return (
         <div className=" mt-10 z-10">
-            <>
-            <IndividualCard  individual={{name: 'MUHAMMED AFEEF', college: 'Pradhiba College', points: 100, image: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"}} index={0} title="Kalaprathiba" individualIndex={0} />
-            </>
             {data.length ? data.map((category, index) => {
                 // Only proceed if winners exist in the category
                 if (category.winners.length === 0) return null;
