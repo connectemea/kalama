@@ -79,7 +79,7 @@ function Index() {
         <motion.img initial={{ opacity: 0, y: -100, scale: 0 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           whileHover={{ scale: 1.1, rotate: 10 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.2, type: "spring", stiffness: 500 }} src={Logo} alt="Kalama Logo"   />
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.2, type: "spring", stiffness: 500 }} src={Logo} alt="Kalama Logo" className="w-full max-w-[300px] md:max-w-[400px] lg:max-w-[500px] h-auto" />
       </div>
 
       <div className="flex flex-col justify-center gap-4 z-30 relative">
