@@ -1,5 +1,4 @@
-import React from "react";
-import { Logo_aikiam, Logo_kalama, Logo_kaloolsavm } from "@/assets/logos";
+import { Logo , Logo_Kalolsavam, Logo_Aikia } from "@/assets/logos/kalappuram";
 import HomeBtn from "@/components/ui/HomeBtn";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
@@ -8,7 +7,7 @@ function Index() {
 
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col justify-around gap-10 min-h-[calc(100dvh-100px)] py-10 mx-auto  w-full overflow-x-hidden overflow-y-auto relative">
+    <div className="flex flex-col z-10 justify-around gap-10 min-h-[calc(100dvh-100px)] py-10 mx-auto  w-full overflow-x-hidden overflow-y-auto relative">
 
 <motion.div
     className="-z-10 absolute top-52 -left-56 w-[300px] h-[300px] bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 rounded-full blur-2xl opacity-40"
@@ -53,7 +52,7 @@ function Index() {
           stiffness: 500, // High stiffness gives a fast, snappy motion
           damping: 30, // Low damping helps create the fast "light speed" feel
         }} className="flex justify-center">
-        <img src={Logo_aikiam} alt="Aikiam Logo" className="" />
+        <img src={Logo_Aikia} alt="Aikiam Logo" className="" />
       </motion.div>
 
       {/* Logo Kaloolsavm */}
@@ -70,7 +69,7 @@ function Index() {
           damping: 30, // Low damping helps create the fast "light speed" feel
         }}
         className="flex justify-center">
-        <img src={Logo_kaloolsavm} alt="Kaloolsavm Logo" className="" />
+        <img src={Logo_Kalolsavam} alt="Kaloolsavm Logo" className="" />
       </motion.div>
 
       {/* Logo Kalama */}
@@ -80,7 +79,7 @@ function Index() {
         <motion.img initial={{ opacity: 0, y: -100, scale: 0 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           whileHover={{ scale: 1.1, rotate: 10 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.2, type: "spring", stiffness: 500 }} src={Logo_kalama} alt="Kalama Logo"   />
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.2, type: "spring", stiffness: 500 }} src={Logo} alt="Kalama Logo"   />
       </div>
 
       <div className="flex flex-col justify-center gap-4 z-30 relative">
@@ -89,7 +88,7 @@ function Index() {
           transition={{ duration: 0.3, ease: "easeOut", delay: 1 }} className="max-w-[340px] mx-auto">
           <HomeBtn
             label="Score Board"
-            className="w-full hover:scale-105 ease-in-out duration-100"
+            className="hover:scale-105 ease-in-out duration-100"
             onClick={() => navigate("scoreboard")}
           />
         </motion.div>
@@ -97,7 +96,7 @@ function Index() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, ease: "easeOut", delay: 1.3 }} className="flex justify-center  gap-4 w-full">
           <HomeBtn label="Result" onClick={() => navigate("result")} className="hover:scale-105 ease-in-out duration-100" />
-          <HomeBtn label="Schedule" onClick={() => navigate("schedule/19-02-25")} className="hover:scale-105 ease-in-out duration-100"  />
+          <HomeBtn label="Schedule" onClick={() => navigate("schedule/22-01-25")} className="hover:scale-105 ease-in-out duration-100"  />
         </motion.div>
       </div>
     </div>

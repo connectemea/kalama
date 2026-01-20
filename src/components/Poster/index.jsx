@@ -29,7 +29,7 @@ import classNames from 'classnames';
 
 function index({ data }) {
 
-    console.log(data)
+    // console.log(data)
 
 
     const getPosition = (position) => {
@@ -71,18 +71,42 @@ function index({ data }) {
 
     function ResultNumber(result_no) {
         // '001'
+        if (result_no === null || result_no === undefined) {
+            return '001';
+        }
         return result_no.toString().padStart(3, '0');
     }
 
-    function extractValidText(text) {
-        const match = text.match(/^(.*?\s*\(EASTERN\)|.*?\s*\(WESTERN\))/);
-        // console.log(match);
-        return match ? match[1].trim() : text;
+    function ExtractedText(text) {
+        if (!text) {
+          return null;
+        }
+      
+        const match = text.match(/^(.*?\s*)(\(EASTERN\)|\(WESTERN\))\s*(.*)?/);
+      
+        return (
+          <span>
+            {match ? (
+              <>
+                {match[1]} {/* Normal text before (EASTERN) */}
+                {match[2]} {/* Normal (EASTERN) or (WESTERN) */}
+                {match[3] && <span className="flex text-center mx-auto items-center justify-center" style={{ fontSize: "0.7em" }}> {match[3]}</span>}
+              </>
+            ) : (
+              text
+            )}
+          </span>
+        );
+      }
+    // console.log(data,+'my slide')
+
+    const RemoveComma = (text = "") => {
+        // console.log(text)
+        return text.replace(/,/g, ' ');
     }
-    console.log(data,+'my slide')
 
     return (
-        <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden justify-between`}>
+        <div className={`relative flex items-center flex-col w-[360px] min-h-[360px] mx-auto overflow-hidden justify-between bg-white`}>
 
             <img src={data?.stageStatus ? topElement : topElementOnstage} alt="topElement" className='absolute top-0 left-0 w-full max-w-[70px]' />
             <img src={data?.stageStatus ? rightElement : rightElementOnstage} alt="rightElement" className='absolute bottom-0 right-0 z-10 max-w-[50px]' />
@@ -92,7 +116,7 @@ function index({ data }) {
             <img src={data?.stageStatus ? blur6 : blur3} className="absolute  left-2/4 right-0 bottom-0 w-36 -z-10" />
             <img src={data?.stageStatus ? blur5 : blur2} className="absolute  top-0 right-1/4 w-36" />
 
-            <div className="flex justify-between flex-col h-full mb-[40px]">
+            <div className="flex justify-between flex-col h-full mb-[40px] mx-[48px]">
                 <div className="flex-1">
 
                     <div className="flex items-center justify-center">
@@ -113,11 +137,11 @@ function index({ data }) {
                     <div className={`${data?.stageStatus ? 'bg-[#276692]' : 'bg-[#220440] '} text-white px-2 py-1  mt-3 max-w-[220px] text-[14px] text-center mx-auto`}>
                         <span className={classNames('text-[14px] font-semibold text-center wordIssue',
                             {
-                                'text-[12px] ': data?.programName.length > 20,
-                            })}>{extractValidText(data?.programName)}</span>
+                                'text-[12px] ': data?.programName?.length > 20,
+                            })}>{ExtractedText(data?.programName)}</span>
                     </div>
                     <div className="mt-3 space-y-4 h-fit">
-                        {data?.winners.map((winner, index) => (
+                        {data?.winners?.map((winner, index) => (
                             <div key={index}>
                                 <div className="flex max-w-[270px] items-start">
                                     <div className="relative h-fit">
@@ -148,8 +172,8 @@ function index({ data }) {
                                                 return '7px'; // For 4 or more users
                                             };
 
-                                            const nameSize = getFontSize(winner.users.length);
-                                            const collegeSize = getSmallFontSize(winner.users.length);
+                                            const nameSize = getFontSize(winner?.users?.length);
+                                            const collegeSize = getSmallFontSize(winner?.users?.length);
 
 
 
@@ -159,20 +183,20 @@ function index({ data }) {
                                                         // Group winner
                                                         <>
                                                             <p className="font-bold leading-none wordIssue" style={{ fontSize: nameSize, color: '#fb923c' }}>
-                                                                {user.name}
+                                                                {(user.name)}
                                                             </p>
                                                             <p className="line-clamp-1" style={{ fontSize: collegeSize }}>
-                                                                {user.team}
+                                                                {RemoveComma(user.team)}
                                                             </p>
                                                         </>
                                                     ) : (
                                                         // Individual winner
                                                         <>
                                                             <p className="font-bold leading-none wordIssue !whitespace-normal" style={{ fontSize: nameSize }}>
-                                                                {user.name}
+                                                                {RemoveComma(user.name)}
                                                             </p>
                                                             <p style={{ fontSize: collegeSize }}>
-                                                                {user.college}
+                                                                {RemoveComma(user?.college)}
                                                             </p>
                                                         </>
                                                     )}
@@ -185,15 +209,15 @@ function index({ data }) {
                         ))}
                     </div>
                     <div className="py-4 w-full mx-auto ">
-                    <div className={classNames('flex justify-around w-full  mt-2 -ml-4',
-                        {
-                            'text-[12px] ': data.programName.length > 20,
-                        }
-                    )}>
-                        <img src={CreatorLogo} alt="" className='w-8' />
-                        <img src={sponserLogo} alt="" className='w-8' />
+                        <div className={classNames('flex justify-around w-full  mt-2 -ml-4',
+                            {
+                                'text-[12px] ': data?.programName?.length > 20,
+                            }
+                        )}>
+                            <img src={CreatorLogo} alt="" className='w-8' />
+                            <img src={sponserLogo} alt="" className='w-11' />
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 {/* <div className="py-3 w-full mx-auto ">

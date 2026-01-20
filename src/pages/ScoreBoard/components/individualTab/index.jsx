@@ -10,10 +10,10 @@ function IndividualTab({ data }) {
 
     const toggleExpand = (index) => {
         setExpandedCategories((prev) => ({
-            ...prev,
-            [index]: !prev[index],
+            [index]: !prev[index], 
         }));
     };
+    
 
     function pickShadowColor(index) {
         switch (index) {
@@ -32,7 +32,10 @@ function IndividualTab({ data }) {
 
 
     return (
-        <div className=" mt-10">
+        <div className=" mt-10 z-10">
+            <>
+            <IndividualCard  individual={{name: 'MUHAMMED AFEEF', college: 'Pradhiba College', points: 100, image: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"}} index={0} title="Kalaprathiba" individualIndex={0} />
+            </>
             {data.length ? data.map((category, index) => {
                 // Only proceed if winners exist in the category
                 if (category.winners.length === 0) return null;
@@ -45,6 +48,7 @@ function IndividualTab({ data }) {
 
                 return (
                     <div key={index} className="max-w-[360px] mx-auto" ref={parent}>
+
                         {winnersToShow.length > 0 && (
                             <>
                                 {/* Render Top Scorer and Others (if expanded) */}
@@ -54,10 +58,10 @@ function IndividualTab({ data }) {
 
                                 {/* Show More Button */}
                                 {otherWinners.length > 0 && (
-                                    <div className='flex items-end justify-end w-full mb-6'>
+                                    <div className='flex items-end justify-end w-full mb-6 z-20'>
                                         <button
                                             onClick={() => toggleExpand(index)}
-                                            className="block px-4 py-1 border border-black text-black  font-bold  "
+                                            className="block px-4 py-1 border border-black text-black  font-bold z-20 "
                                         >
                                             {isExpanded ? 'Show Less' : `Show More`}
                                         </button>

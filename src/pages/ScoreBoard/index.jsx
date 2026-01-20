@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/ui/Header';
 import CollegeTab from './components/collegeTab';
 import IndividualTab from './components/individualTab';
@@ -23,7 +23,7 @@ function CollegeIcon({ color = 'white' }) {
 function Index() {
   const [activeTab, setActiveTab] = useState('college');
   const [colleges, setColleges] = useState([]);
-
+  const [ResultCount, setResultCount] = useState(0);
   const [individuals, setIndividuals] = useState([]);
   const [individualAllRounder, setIndividualAllRounder] = useState([]);
 
@@ -38,11 +38,11 @@ function Index() {
         const data = await response.json();
 
         // Log the raw data for debugging
-        
+
         // Sort colleges by their total score
         const sortedColleges = data.data.results.sort((a, b) => b.totalScore - a.totalScore);
         setColleges(sortedColleges);
-        
+        setResultCount(data.data?.totalResultCount);
 
         // Prepare the formatted data for individual all-rounder categories
         const formattedData = [
@@ -95,15 +95,6 @@ function Index() {
 
         setIndividuals(formattedData);
 
-
-        // const topScorers = data.data?.topScorers?.map((scorer) => ({
-        //   name: scorer.name,
-        //   image: scorer.image,
-        //   college: scorer.college,
-        //   points: scorer.total_score,
-        // })).sort((a, b) => b.points - a.points) || [];
-        // setIndividualAllRounder(topScorers);
-
       } catch (error) {
         console.error('Error fetching leaderboard data:', error);
       } finally {
@@ -115,37 +106,54 @@ function Index() {
   }, []);
 
 
+
+
   return (
     <div className="w-full">
       <Header title="Score Board" href="/" />
       <section className='w-full max-w-[700px] mx-auto mt-10 px-4'>
 
-        <div className="flex justify-center w-full max-w-[360px] mx-auto   sm:px-0">
+        <div className="flex justify-center w-full max-w-[360px] mx-auto gap-[10px] sm:px-0">
           <button
-            className={`py-[5px] px-6 flex font-bold items-center gap-1 justify-center w-full
-            ${activeTab === 'college' ? 'bg-customBlue border border-customBlue text-white' : 'bg-white border border-borderColor border-r-0'
+            className={`flex font-bold items-center gap-1 justify-center rounded-[200px]
+            ${activeTab === 'college' ? 'text-white' : 'bg-white border border-borderColor text-black'
               }`}
+            style={{
+              width: '132px',
+              height: '24px',
+              ...(activeTab === 'college' ? {
+                background: 'radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)'
+              } : {})
+            }}
             onClick={() => setActiveTab('college')}
           >
             <CollegeIcon color={activeTab === 'college' ? 'white' : 'black'} />
             College
           </button>
           <button
-            className={`py-[5px] px-6 flex items-center gap-1 justify-center font-bold w-full
-            ${activeTab === 'individual' ? 'bg-customBlue border border-customBlue text-white' : 'bg-white border border-borderColor border-l-0'
+            className={`flex items-center gap-1 justify-center font-bold rounded-[200px]
+            ${activeTab === 'individual' ? 'text-white' : 'bg-white border border-borderColor text-black'
               }`}
+            style={{
+              width: '132px',
+              height: '24px',
+              ...(activeTab === 'individual' ? {
+                background: 'radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)'
+              } : {})
+            }}
             onClick={() => setActiveTab('individual')}
           >
             <UserRound strokeWidth={3} size={18} color={activeTab !== 'college' ? 'white' : 'black'} />
             Individual
           </button>
         </div>
+
         {loading ? (
           <p className="text-center text-gray-500 mt-4">Loading...</p>
         ) : (
           <div className=''>
-            {console.log(individuals)}
-            {activeTab === 'college' ? <CollegeTab data={colleges} /> : <IndividualTab data={individuals} />}
+            {/* {console.log(individuals)} */}
+            {activeTab === 'college' ? <CollegeTab data={colleges} ResultCount={ResultCount} /> : <IndividualTab data={individuals} />}
           </div>
 
         )}
