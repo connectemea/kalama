@@ -1,8 +1,9 @@
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import classNames from 'classnames';
 
-function Header({
+function index({
     className,
     title,
     href,
@@ -16,19 +17,15 @@ function Header({
     }
 
     return (
-        <div className={classNames('flex p-4 justify-between w-full items-center mt-6', className)}>
-            <div 
-                onClick={handleNavigate} 
-                className='rounded-[200px] relative h-[30px] w-[30px] flex items-center justify-center cursor-pointer'
-                style={{
-                    background: 'radial-gradient(50% 50% at 50% 50%, #0F5BA8 0%, #022564 100%)'
-                }}
-            >
+        <div className='flex p-4 justify-between w-full items-center mt-6 '>
+            <div onClick={handleNavigate} className='border-[3px] border-[#231F20] rounded-none relative h-[22px] w-[22px] flex items-center justify-center cursor-pointer'>
                 <button className=" px-1"  {...props}>
-                    <ArrowLeft color="#ffffff" strokeWidth={3} size={11} />
+                    <ArrowLeft color="#000000" strokeWidth={3} size={11} />
+                    <div className='bg-white h-1 w-2 absolute -left-[7px] top-[35%]' />
+                    <div className='bg-white h-1 w-2 absolute -right-[7px] top-[35%]' />
                 </button>
             </div>
-            <div className={classNames(' text-[#231F20] px-8 font-semibold py-[2px] rounded-[200px]',
+            <div className={classNames(' text-[#231F20] px-8 font-semibold py-[2px]',
                 {
                     'bg-[#3592BA] border-2 border-[#3592BA]': color === '#3592BA',
                     'bg-customEmerald border-2 border-customEmerald': color === '#00A99D',
@@ -48,4 +45,4 @@ function Header({
     )
 }
 
-export default Header
+export default index

@@ -1,7 +1,6 @@
 export {default as Home} from './Home'
 export {default as NotFound} from './NotFound'
 export {default as Result} from './Result'
-export {default as ResultWinners} from './ResultWinners'
 export {default as Schedule} from './Schedule'
 export {default as ScoreBoard} from './ScoreBoard'
 export {default as Stage} from './Stage'
