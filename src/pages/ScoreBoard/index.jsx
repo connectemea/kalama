@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/ui/Header';
 import CollegeTab from './components/collegeTab';
 import IndividualTab from './components/individualTab';
@@ -113,34 +113,20 @@ function Index() {
       <Header title="Score Board" href="/" />
       <section className='w-full max-w-[700px] mx-auto mt-10 px-4'>
 
-        <div className="flex justify-center w-full max-w-[360px] mx-auto gap-[10px] sm:px-0">
+        <div className="flex justify-center w-full max-w-[360px] mx-auto   sm:px-0">
           <button
-            className={`flex font-bold items-center gap-1 justify-center rounded-[200px]
-            ${activeTab === 'college' ? 'text-white' : 'bg-white border border-borderColor text-black'
+            className={`py-[5px] px-6 flex font-bold items-center gap-1 justify-center w-full
+            ${activeTab === 'college' ? 'bg-customBlue border border-customBlue text-white' : 'bg-white border border-borderColor border-r-0'
               }`}
-            style={{
-              width: '132px',
-              height: '24px',
-              ...(activeTab === 'college' ? {
-                background: 'radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)'
-              } : {})
-            }}
             onClick={() => setActiveTab('college')}
           >
             <CollegeIcon color={activeTab === 'college' ? 'white' : 'black'} />
             College
           </button>
           <button
-            className={`flex items-center gap-1 justify-center font-bold rounded-[200px]
-            ${activeTab === 'individual' ? 'text-white' : 'bg-white border border-borderColor text-black'
+            className={`py-[5px] px-6 flex items-center gap-1 justify-center font-bold w-full
+            ${activeTab === 'individual' ? 'bg-customBlue border border-customBlue text-white' : 'bg-white border border-borderColor border-l-0'
               }`}
-            style={{
-              width: '132px',
-              height: '24px',
-              ...(activeTab === 'individual' ? {
-                background: 'radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)'
-              } : {})
-            }}
             onClick={() => setActiveTab('individual')}
           >
             <UserRound strokeWidth={3} size={18} color={activeTab !== 'college' ? 'white' : 'black'} />

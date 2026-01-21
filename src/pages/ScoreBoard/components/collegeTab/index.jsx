@@ -1,6 +1,6 @@
 import { Star, pradhiba, BgRank, Empty } from '@/assets/elements';
 import classNames from 'classnames';
-import { college, SearchIcon } from '@/assets/icons';
+import { college } from '@/assets/icons';
 import { useState } from 'react';
 import { LoaderIcon, Share2 } from 'lucide-react';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
@@ -78,28 +78,20 @@ function CollegeTab({ data, ResultCount }) {
 
             <div className='mt-2'>
 
-                <div className="flex mb-4 items-center justify-center gap-[10px] w-full max-w-[360px] mx-auto">
-                    <div 
-                        className='rounded-[200px] relative h-[30px] w-[30px] flex items-center justify-center flex-shrink-0'
-                        style={{
-                            background: 'radial-gradient(50% 50% at 50% 50%, #0F5BA8 0%, #022564 100%)'
-                        }}
-                    >
-                        <img src={SearchIcon} alt="Search" className="w-4 h-4" />
-                    </div>
+                <div className="flex mb-4 items-center justify-center w-full p-2 border border-gray-800 shadow-sm max-w-[360px] mx-auto focus-within:border-blue-500 focus-within:shadow-md">
                     <input
                         type="text"
                         placeholder="Search College"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="ring-0 focus:ring-0 focus:outline-none w-full rounded-[200px] border border-borderColor px-4 py-2 h-[30px]"
+                        className="ring-0 focus:ring-0 focus:outline-none w-full pl-2"
                     />
                 </div>
                 <div className='flex items-center justify-between max-w-[360px] mx-auto my-4'>
-                    <div className='flex items-start justify-start text-center bg-[#146BB6] w-fit gap-2 rounded-[200px] text-white font-semibold px-2 py-[2px]'>
+                    <div className='flex items-start justify-start text-center bg-black w-fit gap-2  text-white font-semibold px-2 py-[2px]'>
                         After <div className='text-[#ccff00]'>{ResultCount || "..."}</div>Results
                     </div>
-                    <button disabled={loading || data.length === 0}  className="flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed border border-gray-700 px-2 text-[13px] py-1 min-w-[100px] rounded-[200px]" onClick={() => handleShare()}>
+                    <button disabled={loading || data.length === 0}  className="flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed border border-gray-700 px-2 text-[13px] py-1 min-w-[100px]" onClick={() => handleShare()}>
                         {loading ? (
                             <>
                                 <LoaderIcon className='animate-spin mx-auto'/>
@@ -114,7 +106,6 @@ function CollegeTab({ data, ResultCount }) {
                     {/* data.length === 0 */}
                 </div>
                 <div ref={parent} className='max-w-[360px] flex flex-col mx-auto'>
-                <CollegeCard  college={{collegeName: 'EMEA College of Arts and Science,Kondotty', totalScore: 100, rank: 1}} />
                     {filteredData.length > 0 ? filteredData.slice(0, 10).map((college, index) => {
                         return (
                             <CollegeCard key={index} college={college} />

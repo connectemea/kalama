@@ -3,7 +3,7 @@ import { useState } from 'react';
 import IndividualCard from '@/components/IndividualCard';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
-function IndividualTab({ data = [] }) {
+function IndividualTab({ data }) {
     const [expandedCategories, setExpandedCategories] = useState({});
     const [parent] = useAutoAnimate()
     // console.log(data)
@@ -45,7 +45,6 @@ function IndividualTab({ data = [] }) {
 
                 return (
                     <div key={index} className="max-w-[360px] mx-auto" ref={parent}>
-
                         {winnersToShow.length > 0 && (
                             <>
                                 {/* Render Top Scorer and Others (if expanded) */}

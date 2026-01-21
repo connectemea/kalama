@@ -1,77 +1,73 @@
-import { Star } from '@/assets/elements';
+import React from 'react'
+import classNames from 'classnames';
+import { Star, pradhiba } from '@/assets/elements';
 
 function index({ individual, index, title, individualIndex  }) {
 
     function pickShadowColor(index) {
-        const colors = ['#012161', '#3548AC', '#146BB6', '#59AED2'];
-        const color = colors[index] || '#012161';
-        return `1.5px 1.5px 2px ${color}80`;
-    }
-
-    function pickColor(index) {
-        if (index === 0) {
-            return '#012161'
-        } else if (index === 1) {
-            return '#3548AC'
-        } else if (index === 2) {
-            return '#146BB6'
-        } else if (index === 3) {
-            return '#59AED2'
-        } else {
-            return '#000000'
+        switch (index) {
+            case 0:
+                return '1.5px 1.5px 2px #8DC63F80';
+            case 1:
+                return '1.5px 1.5px 2px #00A99D80';
+            case 2:
+                return '1.5px 1.5px 2px #3592BA80';
+            case 3:
+                return '1.5px 1.5px 2px #F99D1C80';
+            default:
+                return '1.5px 1.5px 1px #3592BA80';
         }
     }
-
-    function getBorderColor(index) {
-        return pickColor(index);
-    }
-
-    function getBgColor(index) {
-        return pickColor(index);
-    }
-
     return (
         <div
             key={individualIndex}
-            className="flex flex-col relative justify-start rounded-xl w-full flex-1 bg-white items-center p-2 pb-2 mb-4 border border-b-[4px] mx-auto overflow-hidden"
-            style={{ borderColor: getBorderColor(index), borderBottomColor: getBorderColor(index) }}
-        >
-            <img src={Star} alt="" className='absolute top-0 -right-[15px] w-[30px] h-[30px]' />
-            {/* Category Title Inside Card */}
-            {individualIndex === 0 && (
-                <h3
-                    className="text-sm font-bold text-white text-center rounded-[20px] flex items-center justify-center mx-auto"
-                    style={{
-                        width: '109px',
-                        height: '24px',
-                        backgroundColor: getBgColor(index)
-                    }}
-                >
-                    {title}
-                </h3>
+            className={classNames("border-b-[4px] border-b-customEmerald mx-auto mb-4 !bg-white z-30 relative",
+                { 'border-b-customGreen': index === 0 },
+                { 'border-b-customEmerald': index === 1 },
+                { 'border-b-[#3592BA]': index === 2 },
+                { 'border-b-customOrange': index === 3 }
+
             )}
-            <div className="flex items-center gap-4 flex-1 w-full min-h-[60px]">
-                <div className="h-20 w-20 bg-gray-300 flex-shrink-0">
-                    <img
-                        src={individual?.image}
-                        alt={individual?.name}
-                        className="h-full w-full object-cover"
-                    />
-                </div>
-                <div className='flex-1 w-full flex flex-col gap-1'>
-                    <div className="">
-                        <p className="font-semibold leading-4 min-h-[42px] flex items-end">{individual?.name}</p>
-                        <p className="text-sm min-h-[36px]">{individual?.college}</p>
+        >
+            <div className="border rounded-none border-[#000] flex items-center flex-col gap-2 relative p-2 bg-white">
+                <img src={Star} alt="Star" className="absolute -top-2 right-3" />
+                <img src={pradhiba} alt="Pradhiba" className="absolute bottom-0" />
+                {/* Category Title Inside Card */}
+                {individualIndex === 0 && (
+                    <h3
+                        style={{ textShadow: pickShadowColor(index) }}
+                        className={classNames("text-xl font-bold text-gray-800 text-center text-shadow",
+                        )}>
+                        {title}
+                    </h3>
+                )}
+                <div className="flex flex-1 w-full justify-start gap-4">
+                    <div className="h-20 w-20 bg-gray-300">
+                        <img
+                            src={individual?.image}
+                            alt={individual?.name}
+                            className="h-full w-full object-cover"
+                        />
                     </div>
-                    <hr className="border-[1.5px] mb-[1px]" style={{ borderColor: getBorderColor(index) }} />
-                    <div className='flex items-end justify-end'>
-                        <span className="flex items-center justify-center px-3 py-1 text-white font-bold rounded-xl" style={{ backgroundColor: getBgColor(index) }}>
-                            {individual?.points} Pts
-                        </span>
+                    <div className="flex flex-col gap-1 flex-1 flex-grow">
+                        <div className="">
+                            <p className="font-medium text-xl">{individual?.name}</p>
+                            <p className="text-sm min-h-[36px]">{individual?.college}</p>
+                        </div>
+                        <hr className="border-[1.5px] border-borderColor mb-1" />
+                        <div className="flex items-end justify-end">
+                            <span className={classNames("flex items-center justify-center px-2 py-[1px] bg-customEmerald text-white font-bold rounded-none border border-borderColor",
+                                { 'bg-customGreen': index === 0 },
+                                { 'bg-customEmerald': index === 1 },
+                                { 'bg-[#3592BA]': index === 2 },
+                                { 'bg-customOrange': index === 3 }
+                            )}>
+                                {individual?.points} Pts
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <img src={Star} alt="" className='absolute -bottom-[20px] left-20 w-[30px] h-[50px]' />
         </div>
     )
 }
