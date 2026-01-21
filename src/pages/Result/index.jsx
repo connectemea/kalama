@@ -26,6 +26,7 @@ function Index() {
   const [imageUrl, setImageUrl] = useState("");
   const [posterLoading, setPosterLoading] = useState(false);
   const [showPoster, setShowPoster] = useState(false);
+  const [processingAction, setProcessingAction] = useState({ id: null, type: null });
   const [activeTab, setActiveTab] = useState("event");
 
   useEffect(() => {
@@ -92,7 +93,7 @@ function Index() {
       const { data } = await response.json();
       // console.log("Fetched Data:", data);
 
-      const formattedData = data.map((program) => ({
+      const formattedData = data?.map((program) => ({
         programName: program.name,
         id: program._id,
         result_no: program.serial_number,
@@ -124,7 +125,6 @@ function Index() {
                   const positionIndex = acc.findIndex(
                     (w) => w.position === winner.position,
                   );
-                  console.log(participant);
                   const newUser = {
                     name: participant.name,
                     college: participant.college || "Unknown College",
@@ -177,6 +177,7 @@ function Index() {
   };
 
   const handleDownload = (id) => {
+    setProcessingAction({ id: id || "event", type: "download" });
     const poster = document.getElementById(
       id ? `${id}-resultPosterId` : "resultPosterId",
     );
@@ -188,21 +189,26 @@ function Index() {
     html2canvas(poster, {
       scale: 5,
       useCORS: true,
-    }).then((canvas) => {
-      const imageUrl = canvas.toDataURL("image/png");
-      setImageUrl(imageUrl);
-      const link = document.createElement("a");
-      link.href = imageUrl;
-      if (selectedProgram) {
-        link.download = `${selectedProgram.programName}-result.png`;
-      } else {
-        link.download = "poster.png";
-      }
-      link.click();
-    });
+    })
+      .then((canvas) => {
+        const imageUrl = canvas.toDataURL("image/png");
+        setImageUrl(imageUrl);
+        const link = document.createElement("a");
+        link.href = imageUrl;
+        if (selectedProgram) {
+          link.download = `${selectedProgram.programName}-result.png`;
+        } else {
+          link.download = "poster.png";
+        }
+        link.click();
+      })
+      .finally(() => {
+        setProcessingAction({ id: null, type: null });
+      });
   };
 
   const handleShare = async (id) => {
+    setProcessingAction({ id: id || "event", type: "share" });
     const poster = document.getElementById(
       id ? `${id}-resultPosterId` : "resultPosterId",
     );
@@ -214,36 +220,44 @@ function Index() {
     html2canvas(poster, {
       scale: 5,
       useCORS: true,
-    }).then((canvas) => {
-      canvas.toBlob(async (blob) => {
-        if (!blob) return;
-
-        const file = new File([blob], "poster.png", { type: "image/png" });
-
-        if (navigator.share) {
-          try {
-            await navigator.share({
-              title: "Kalappuram",
-              url: "https://czonekalappuram.in",
-              text: "Check out the winners! 🎉",
-              files: [file],
-            });
-          } catch (err) {
-            console.error("Error sharing:", err);
+    })
+      .then((canvas) => {
+        canvas.toBlob(async (blob) => {
+          if (!blob) {
+            setProcessingAction({ id: null, type: null });
+            return;
           }
-        } else {
-          console.warn(
-            "Web Share API not supported or file sharing not supported",
-          );
-          alert(
-            "Sorry, file sharing is not supported on your device please download the image and share it manually",
-          );
-        }
-      });
-    });
-  };
 
-  const colors = ["#3592BA", "#00A99D", "#8DC63F", "#FF5733", "#FFC300"];
+          const file = new File([blob], "poster.png", { type: "image/png" });
+
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: "Kalappuram",
+                url: "https://czonekalappuram.in",
+                text: "Check out the winners! 🎉",
+                files: [file],
+              });
+            } catch (err) {
+              console.error("Error sharing:", err);
+            } finally {
+              setProcessingAction({ id: null, type: null });
+            }
+          } else {
+            console.warn(
+              "Web Share API not supported or file sharing not supported",
+            );
+            alert(
+              "Sorry, file sharing is not supported on your device please download the image and share it manually",
+            );
+            setProcessingAction({ id: null, type: null });
+          }
+        });
+      })
+      .catch((err) => {
+        setProcessingAction({ id: null, type: null });
+      });
+  };
 
   function ExtractedText(text) {
     if (!text) {
@@ -290,19 +304,18 @@ function Index() {
             <div className="flex justify-center w-full max-w-[360px] mx-auto gap-[10px] sm:px-0 my-4">
               <button
                 className={`flex font-bold items-center gap-1 justify-center rounded-[200px] p-3
-                        ${
-                          activeTab === "event"
-                            ? "text-white"
-                            : "bg-white border border-borderColor text-black"
-                        }`}
+                        ${activeTab === "event"
+                    ? "text-white"
+                    : "bg-white border border-borderColor text-black"
+                  }`}
                 style={{
                   width: "140px",
                   height: "30px",
                   ...(activeTab === "event"
                     ? {
-                        background:
-                          "radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)",
-                      }
+                      background:
+                        "radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)",
+                    }
                     : {}),
                 }}
                 onClick={() => setActiveTab("event")}
@@ -317,19 +330,18 @@ function Index() {
               {!selectedProgram.is_group && (
                 <button
                   className={`flex items-center gap-1 justify-center font-bold rounded-[200px]
-                        ${
-                          activeTab === "individual"
-                            ? "text-white"
-                            : "bg-white border border-borderColor text-black"
-                        }`}
+                        ${activeTab === "individual"
+                      ? "text-white"
+                      : "bg-white border border-borderColor text-black"
+                    }`}
                   style={{
                     width: "140px",
                     height: "30px",
                     ...(activeTab === "individual"
                       ? {
-                          background:
-                            "radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)",
-                        }
+                        background:
+                          "radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)",
+                      }
                       : {}),
                   }}
                   onClick={() => setActiveTab("individual")}
@@ -374,27 +386,38 @@ function Index() {
 
                 <div className="flex items-center justify-center gap-2 mt-4 max-w-[300px] mx-auto">
                   <button
-                    onClick={handleShare}
-                    className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                    onClick={() => handleShare()}
+                    disabled={processingAction.id !== null}
+                    className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Share2 className="w-4 h-4" />
+                    {processingAction.id === "event" &&
+                      processingAction.type === "share" ? (
+                      <Loader className="w-4 h-4 animate-spin text-blue-500" />
+                    ) : (
+                      <Share2 className="w-4 h-4" />
+                    )}
                     <p className="font-semibold">Share</p>
                   </button>
                   <button
-                    onClick={handleDownload}
-                    className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                    onClick={() => handleDownload()}
+                    disabled={processingAction.id !== null}
+                    className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {" "}
-                    <Download className="w-4 h-4" />
+                    {processingAction.id === "event" &&
+                      processingAction.type === "download" ? (
+                      <Loader className="w-4 h-4 animate-spin text-blue-500" />
+                    ) : (
+                      <Download className="w-4 h-4" />
+                    )}
                     <p className="font-semibold">Download</p>
                   </button>
                 </div>
               </>
             ) : (
               <>
-                {selectedProgram.winners.map((position) => (
+                {selectedProgram.winners?.map((position) => (
                   <>
-                    {position.users.map((participant) => (
+                    {position.users?.map((participant) => (
                       <>
                         <div
                           className="flex items-center justify-center pt-6"
@@ -427,17 +450,28 @@ function Index() {
                         <div className="flex items-center justify-center gap-2 mt-4 max-w-[300px] mx-auto">
                           <button
                             onClick={() => handleShare(participant.userId)}
-                            className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                            disabled={processingAction.id !== null}
+                            className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
-                            <Share2 className="w-4 h-4" />
+                            {processingAction.id === participant.userId &&
+                              processingAction.type === "share" ? (
+                              <Loader className="w-4 h-4 animate-spin text-blue-500" />
+                            ) : (
+                              <Share2 className="w-4 h-4" />
+                            )}
                             <p className="font-semibold">Share</p>
                           </button>
                           <button
                             onClick={() => handleDownload(participant.userId)}
-                            className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                            disabled={processingAction.id !== null}
+                            className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
-                            {" "}
-                            <Download className="w-4 h-4" />
+                            {processingAction.id === participant.userId &&
+                              processingAction.type === "download" ? (
+                              <Loader className="w-4 h-4 animate-spin text-blue-500" />
+                            ) : (
+                              <Download className="w-4 h-4" />
+                            )}
                             <p className="font-semibold">Download</p>
                           </button>
                         </div>
@@ -463,7 +497,7 @@ function Index() {
             {!loading ? (
               <>
                 {filteredPrograms.length > 0 ? (
-                  filteredPrograms.map((program, index) => (
+                  filteredPrograms?.map((program, index) => (
                     <motion.button
                       key={index}
                       onClick={() => handleProgramSelect(program)}
