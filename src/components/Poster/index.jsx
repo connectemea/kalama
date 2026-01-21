@@ -69,17 +69,17 @@ function index({ data }) {
                                     {winner?.users?.map((user, userIndex) => {
 
                                         const getFontSize = (totalUsers) => {
-                                            if (totalUsers <= 1) return '11px';
-                                            if (totalUsers === 2) return '10px';
+                                            if (totalUsers <= 1) return '12px';
+                                            if (totalUsers === 2) return '11px';
                                             if (totalUsers === 3) return '10px';
                                             return '10px'; // For 4 or more users
                                         };
 
                                         const getSmallFontSize = (totalUsers) => {
-                                            if (totalUsers <= 1) return '6px';
-                                            if (totalUsers === 2) return '5px';
-                                            if (totalUsers === 3) return '5px';
-                                            return '7px'; // For 4 or more users
+                                            if (totalUsers <= 1) return '7px';
+                                            if (totalUsers === 2) return '6.5px';
+                                            if (totalUsers === 3) return '6.5px';
+                                            return '6.5px'; // For 4 or more users
                                         };
 
                                         const nameSize = getFontSize(winner?.users?.length);
@@ -92,7 +92,7 @@ function index({ data }) {
                                                 {user.team ? (
                                                     // Group winner
                                                     <>
-                                                        <p className="font-bold leading-none wordIssue" style={{ fontSize: nameSize }}>
+                                                        <p className="font-bold leading-none wordIssue capitalize" style={{ fontSize: nameSize }}>
                                                             {(user.name)}
                                                         </p>
                                                         <p className="line-clamp-1" style={{ fontSize: collegeSize }}>
@@ -102,10 +102,10 @@ function index({ data }) {
                                                 ) : (
                                                     // Individual winner
                                                     <>
-                                                        <p className="font-bold leading-none wordIssue !whitespace-normal" style={{ fontSize: nameSize }}>
+                                                        <p className="font-bold leading-none wordIssue capitalize !whitespace-normal" style={{ fontSize: nameSize }}>
                                                             {RemoveComma(user.name)}
                                                         </p>
-                                                        <p style={{ fontSize: collegeSize }}>
+                                                        <p style={{ fontSize: collegeSize, lineHeight: '1.2' }}>
                                                             {RemoveComma(user?.college)}
                                                         </p>
                                                     </>
