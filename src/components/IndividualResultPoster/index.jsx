@@ -92,7 +92,8 @@ function IndividualResultPoster(data ) {
                         <img
                             src={data.profileImg}
                             alt="Winner"
-                            className="w-[100px] h-[119px] object-cover rounded-[14px] drop-shadow-[0_3px_0_#1A2600] bg-[#D9D9D9]"
+                            crossOrigin="anonymous"
+                            className="w-[100px] h-[125px] object-cover border-b-[3px] border-[#1A2600] rounded-[14px] bg-[#1A2600]"
                         />
                         <img
                             src={getConfigByPosition(data?.position)?.badge}
