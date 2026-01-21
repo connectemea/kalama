@@ -14,7 +14,7 @@ function CollegeCard({ college }) {
     const PointsBadge = ({ color, children }) => (
         <div className="flex items-center h-[18px]">
             {/* Left side: SVG with star decoration */}
-            
+
             <svg width="8" height="18" viewBox="0 0 17 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.9121 38C9.65154 38 3.34302 33.9268 0.144531 27.9414C1.99335 23.0572 5.76921 20.1936 11.3838 19.291C5.62182 18.4049 1.78964 15.3787 0 10.3311C3.15078 4.19678 9.5416 0 16.9121 0V38Z" fill={color}/>
             </svg>
@@ -63,7 +63,7 @@ function CollegeCard({ college }) {
                 </div>
                 <div className='flex-1 w-full flex gap-1.5'>
                     <p
-                        className="font-semibold leading-4 flex items-center text-xs"
+                        className="font-semibold leading-4 flex items-center text-xs uppercase"
                         style={{
                             color: pickColor(college.rank),
                             display: 'flex',
