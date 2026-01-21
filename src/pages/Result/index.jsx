@@ -223,8 +223,8 @@ function Index() {
         if (navigator.share) {
           try {
             await navigator.share({
-              title: "Kalama",
-              url: "https://czonekalama.in",
+              title: "Kalappuram",
+              url: "https://czonekalappuram.in",
               text: "Check out the winners! 🎉",
               files: [file],
             });
