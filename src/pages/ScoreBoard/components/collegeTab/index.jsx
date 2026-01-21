@@ -114,7 +114,6 @@ function CollegeTab({ data, ResultCount }) {
                     {/* data.length === 0 */}
                 </div>
                 <div ref={parent} className='max-w-[360px] flex flex-col mx-auto'>
-                <CollegeCard  college={{collegeName: 'EMEA College of Arts and Science,Kondotty', totalScore: 100, rank: 1}} />
                     {filteredData.length > 0 ? filteredData.slice(0, 10).map((college, index) => {
                         return (
                             <CollegeCard key={index} college={college} />
