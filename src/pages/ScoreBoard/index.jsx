@@ -5,7 +5,7 @@ import IndividualTab from './components/individualTab';
 import { UserRound } from 'lucide-react';
 
 
-function CollegeIcon({ color = 'white' }) {
+export function CollegeIcon({ color = 'white' }) {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_178_480)">

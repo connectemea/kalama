@@ -46,9 +46,7 @@ const getConfigByPosition = (position) => {
     }
 }
 
-function IndividualResultPoster({ data }) {
-
-    const dummyPosition = 2;
+function IndividualResultPoster(data ) {
 
     function ExtractedText(text) {
         if (!text) {
@@ -79,10 +77,10 @@ function IndividualResultPoster({ data }) {
     return (
         <div className={`relative flex items-center flex-col w-[360px] h-full min-h-[450px] mx-auto overflow-hidden justify-between`}>
 
-            <img src={getConfigByPosition(dummyPosition)?.bg} alt="backgroundImg" className='absolute -z-10 top-0 left-0 right-0 w-full' />
+            <img src={getConfigByPosition(data?.position)?.bg} alt="backgroundImg" className='absolute -z-10 top-0 left-0 right-0 w-full' />
 
             <div className="flex justify-between flex-col h-full mt-[130px] mx-[70px]">
-                <div className={`${getConfigByPosition(dummyPosition)?.titleStyle} bg-white drop-shadow-[0_3px_0_#1A2600] border rounded-full px-3 py-1 mt-3 min-w-32 max-w-[200px] text-center mx-auto`}>
+                <div className={`${getConfigByPosition(data?.position)?.titleStyle} bg-white drop-shadow-[0_3px_0_#1A2600] border rounded-full px-3 py-1 mt-3 min-w-32 max-w-[200px] text-center mx-auto`}>
                     <p className={classNames('text-[11px] leading-3 font-extrabold text-center wordIssue',
                         {
                             'text-[10px] ': data?.programName?.length > 20,
@@ -92,22 +90,22 @@ function IndividualResultPoster({ data }) {
                 <div className="z-10 mt-6 space-y-2 h-fit w-full flex flex-col items-center">
                     <div className="relative">
                         <img
-                            src="https://kalolsavam-object-store-prod.sfo3.digitaloceanspaces.com/user-profile/69613604e3168b3d6caedbf4_1767978500923_image.jpg"
+                            src={data.profileImg}
                             alt="Winner"
                             className="w-[100px] h-[119px] object-cover rounded-[14px] drop-shadow-[0_3px_0_#1A2600] bg-[#D9D9D9]"
                         />
                         <img
-                            src={getConfigByPosition(dummyPosition)?.badge}
+                            src={getConfigByPosition(data?.position)?.badge}
                             alt="Badge"
                             className="absolute -top-3 -right-3 w-[35px]"
                         />
                     </div>
                     <div className="text-center">
-                        <h2 className={`text-sm font-extrabold uppercase ${getConfigByPosition(dummyPosition).nameStyle}`}>
-                            MUHAMMED AFEEF
+                        <h2 className={`text-sm font-extrabold uppercase ${getConfigByPosition(data?.position).nameStyle}`}>
+                            {data?.name}
                         </h2>
-                        <p className={`text-[9px] font-semibold capitalize ${getConfigByPosition(dummyPosition).collegeStyle}`}>
-                            EMEA College of Arts and Science, Kondotty
+                        <p className={`text-[9px] font-semibold capitalize ${getConfigByPosition(data?.position).collegeStyle}`}>
+                            {data?.collegeName}
                         </p>
                     </div>
                 </div>

@@ -9,6 +9,9 @@ import Empty from "@/assets/gifs/empty.gif";
 import Loading from "@/assets/gifs/loading_hand.gif";
 import { motion } from "motion/react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { UserRound, Castle } from "lucide-react";
+import { CollegeIcon } from "../ScoreBoard";
+import IndividualResultPoster from "@/components/IndividualResultPoster";
 
 function Index() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,6 +26,7 @@ function Index() {
   const [imageUrl, setImageUrl] = useState("");
   const [posterLoading, setPosterLoading] = useState(false);
   const [showPoster, setShowPoster] = useState(false);
+  const [activeTab, setActiveTab] = useState("event");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,10 +124,13 @@ function Index() {
                   const positionIndex = acc.findIndex(
                     (w) => w.position === winner.position,
                   );
+                  console.log(participant);
                   const newUser = {
                     name: participant.name,
                     college: participant.college || "Unknown College",
                     year: participant.year_of_study || "N/A",
+                    profileImg: participant.image || "",
+                    userId: participant._id,
                   };
 
                   if (positionIndex === -1) {
@@ -169,8 +176,10 @@ function Index() {
     setIsDialogOpen(!isDialogOpen);
   };
 
-  const handleDownload = () => {
-    const poster = document.getElementById("resultPosterId");
+  const handleDownload = (id) => {
+    const poster = document.getElementById(
+      id ? `${id}-resultPosterId` : "resultPosterId",
+    );
     ReactGA.event({
       category: "Button",
       action: "Click",
@@ -193,8 +202,10 @@ function Index() {
     });
   };
 
-  const handleShare = async () => {
-    const poster = document.getElementById("resultPosterId");
+  const handleShare = async (id) => {
+    const poster = document.getElementById(
+      id ? `${id}-resultPosterId` : "resultPosterId",
+    );
     ReactGA.event({
       category: "Button",
       action: "Click",
@@ -276,46 +287,166 @@ function Index() {
 
         {filteredPrograms.length > 0 && selectedProgram && showPoster && (
           <div className="min-h-[400px] pb-4">
-            {/* {loadingPoster ? (
+            <div className="flex justify-center w-full max-w-[360px] mx-auto gap-[10px] sm:px-0 my-4">
+              <button
+                className={`flex font-bold items-center gap-1 justify-center rounded-[200px] p-3
+                        ${
+                          activeTab === "event"
+                            ? "text-white"
+                            : "bg-white border border-borderColor text-black"
+                        }`}
+                style={{
+                  width: "140px",
+                  height: "30px",
+                  ...(activeTab === "event"
+                    ? {
+                        background:
+                          "radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)",
+                      }
+                    : {}),
+                }}
+                onClick={() => setActiveTab("event")}
+              >
+                <Castle
+                  strokeWidth={3}
+                  size={18}
+                  color={activeTab === "event" ? "white" : "black"}
+                />
+                Event
+              </button>
+              {!selectedProgram.is_group && (
+                <button
+                  className={`flex items-center gap-1 justify-center font-bold rounded-[200px]
+                        ${
+                          activeTab === "individual"
+                            ? "text-white"
+                            : "bg-white border border-borderColor text-black"
+                        }`}
+                  style={{
+                    width: "140px",
+                    height: "30px",
+                    ...(activeTab === "individual"
+                      ? {
+                          background:
+                            "radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)",
+                        }
+                      : {}),
+                  }}
+                  onClick={() => setActiveTab("individual")}
+                >
+                  <UserRound
+                    strokeWidth={3}
+                    size={18}
+                    color={activeTab === "individual" ? "white" : "black"}
+                  />
+                  Individual
+                </button>
+              )}
+            </div>
+
+            {activeTab === "event" ? (
+              <>
+                {/* {loadingPoster ? (
                   <div className='flex items-center justify-center py-4'>
                     <Loader className='animate-spin' />
                   </div>
                 ) : ( */}
-            <div className="flex items-center justify-center pt-6" ref={parent}>
-              {posterLoading ? (
-                <div className="w-full h-full min-h-[400px] max-w-[360px] bg-slate-200 animate-pulse"></div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ duration: 0.4 }}
+                <div
+                  className="flex items-center justify-center pt-6"
+                  ref={parent}
                 >
-                  <div className="w-fit h-fit" id="resultPosterId">
-                    <Poster data={selectedProgram} />
-                  </div>
-                </motion.div>
-              )}
-            </div>
-            {/* )} */}
+                  {posterLoading ? (
+                    <div className="w-full h-full min-h-[400px] max-w-[360px] bg-slate-200 animate-pulse"></div>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 20 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <div className="w-fit h-fit" id="resultPosterId">
+                        <Poster data={selectedProgram} />
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+                {/* )} */}
 
-            <div className="flex items-center justify-center gap-2 mt-4 max-w-[300px] mx-auto">
-              <button
-                onClick={handleShare}
-                className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
-              >
-                <Share2 className="w-4 h-4" />
-                <p className="font-semibold">Share</p>
-              </button>
-              <button
-                onClick={handleDownload}
-                className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
-              >
-                {" "}
-                <Download className="w-4 h-4" />
-                <p className="font-semibold">Download</p>
-              </button>
-            </div>
+                <div className="flex items-center justify-center gap-2 mt-4 max-w-[300px] mx-auto">
+                  <button
+                    onClick={handleShare}
+                    className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                  >
+                    <Share2 className="w-4 h-4" />
+                    <p className="font-semibold">Share</p>
+                  </button>
+                  <button
+                    onClick={handleDownload}
+                    className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                  >
+                    {" "}
+                    <Download className="w-4 h-4" />
+                    <p className="font-semibold">Download</p>
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                {selectedProgram.winners.map((position) => (
+                  <>
+                    {position.users.map((participant) => (
+                      <>
+                        <div
+                          className="flex items-center justify-center pt-6"
+                          ref={parent}
+                        >
+                          {posterLoading ? (
+                            <div className="w-full h-full min-h-[400px] max-w-[360px] bg-slate-200 animate-pulse"></div>
+                          ) : (
+                            <motion.div
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 20 }}
+                              transition={{ duration: 0.4 }}
+                            >
+                              <div
+                                className="w-fit h-fit"
+                                id={`${participant.userId}-resultPosterId`}
+                              >
+                                <IndividualResultPoster
+                                  programName={selectedProgram.programName}
+                                  name={participant.name}
+                                  position={position.position}
+                                  collegeName={participant.college}
+                                  profileImg={participant.profileImg}
+                                />
+                              </div>
+                            </motion.div>
+                          )}
+                        </div>
+                        <div className="flex items-center justify-center gap-2 mt-4 max-w-[300px] mx-auto">
+                          <button
+                            onClick={() => handleShare(participant.userId)}
+                            className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                          >
+                            <Share2 className="w-4 h-4" />
+                            <p className="font-semibold">Share</p>
+                          </button>
+                          <button
+                            onClick={() => handleDownload(participant.userId)}
+                            className="flex flex-1 text-center justify-center items-center gap-1 border-2 border-borderColor px-2 py-1 hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                          >
+                            {" "}
+                            <Download className="w-4 h-4" />
+                            <p className="font-semibold">Download</p>
+                          </button>
+                        </div>
+                      </>
+                    ))}
+                  </>
+                ))}
+              </>
+            )}
           </div>
         )}
         {/* Program List */}
