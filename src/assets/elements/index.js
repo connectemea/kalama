@@ -5,5 +5,6 @@ import BgSearch from './bgSearch.svg';
 import pradhiba from './pradhiba.svg';
 import Star from './Star.svg';
 import Empty from './empty.gif';
+import Page_bottom from './page_bottom.svg';
 
-export { Avatar_bl, Avatar_br, BgRank, BgSearch, pradhiba, Star, Empty };
+export { Avatar_bl, Avatar_br, BgRank, BgSearch, pradhiba, Star, Empty, Page_bottom };

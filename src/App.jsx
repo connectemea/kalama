@@ -1,4 +1,4 @@
-import { Home, NotFound, Result, Schedule, Stage, ScoreBoard, TVscreen, Media, Report , Media2} from './pages';
+import { Home, NotFound, Result, ResultWinners, Schedule, Stage, ScoreBoard, TVscreen, Media, Report , Media2} from './pages';
 import Layout from '@/components/layout';
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import ReactGA from "react-ga4";
@@ -16,6 +16,10 @@ const routes = [
       {
         path: "result",
         element: <Result />,
+      },
+      {
+        path: "result/:eventId",
+        element: <ResultWinners />,
       },
       {
         path: "schedule/:dateState",
@@ -57,7 +61,7 @@ const routes = [
 function App() {
 
   const location = useLocation();
-  const GAID = import.meta.env.VITE_GA_ID;
+  const GAID = import.meta.env.VITE_GA_ID || 'G-1234567890';
 
   // Initialize Google Analytics
   useEffect(() => {
