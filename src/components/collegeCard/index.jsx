@@ -27,6 +27,18 @@ function index({ college }) {
         return pickColor(rank);
     }
 
+    function pickBgColor(rank) {
+        if (rank === 1) {
+            return 'bg-[#012161]'
+        } else if (rank === 2) {
+            return 'bg-[#3548AC]'
+        } else if (rank === 3) {
+            return 'bg-[#146BB6]'
+        } else {
+            return 'bg-[#000000]'
+        }
+    }
+
 
 
     return (
@@ -51,6 +63,12 @@ function index({ college }) {
                         {college.collegeName}
                     </p>
                     <hr className="border-[1.5px] mb-[1px]" style={{ borderColor: getBorderColor(college.rank) }} />
+                                        <div className='flex items-end justify-end'>
+                        <span className={`flex items-center justify-center px-2 py-[1px]  text-white font-bold rounded-none  
+                ${pickBgColor(college.rank)}`}>
+                            {college.totalScore} Pts
+                        </span>
+                    </div>
                 </div>
             
             </div>

@@ -40,9 +40,9 @@ function index({ individual, index, title, individualIndex  }) {
             {/* Category Title Inside Card */}
             {individualIndex === 0 && (
                 <h3
-                    className="text-sm font-bold text-white text-center rounded-[20px] flex items-center justify-center mx-auto"
+                    className="text-sm font-bold text-white text-center rounded-[20px] flex items-center justify-center mx-auto px-2"
                     style={{
-                        width: '109px',
+                        minWidth: '109px',
                         height: '24px',
                         backgroundColor: getBgColor(index)
                     }}
