@@ -49,9 +49,9 @@ function CollegeTab({ data, ResultCount }) {
                     try {
                         // Share the image as a file
                         await navigator.share({
-                            title: 'Kalama Leaderboard',
-                            url: 'https://czonekalama.in',
-                            text: "Check out the Kalama Leaderboard🎉",
+                            title: 'Kalappuram Leaderboard',
+                            url: 'https://czonekalappuram.in/',
+                            text: "Check out the Kalappuram Leaderboard🎉",
                             files: [file],
                         });
                         setLoading(false)
@@ -99,7 +99,7 @@ function CollegeTab({ data, ResultCount }) {
                     <div className='flex items-start justify-start text-center bg-[#146BB6] w-fit gap-2 rounded-[200px] text-white font-semibold px-2 py-[2px]'>
                         After <div className='text-[#ccff00]'>{ResultCount || "..."}</div>Results
                     </div>
-                    <button disabled={loading || data.length === 0}  className="flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed border border-gray-700 px-2 text-[13px] py-1 min-w-[100px] rounded-[200px]" onClick={() => handleShare()}>
+                    {/* <button disabled={loading || data.length === 0}  className="flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed border border-gray-700 px-2 text-[13px] py-1 min-w-[100px] rounded-[200px]" onClick={() => handleShare()}>
                         {loading ? (
                             <>
                                 <LoaderIcon className='animate-spin mx-auto'/>
@@ -110,7 +110,7 @@ function CollegeTab({ data, ResultCount }) {
                                 Share Now
                             </>
                         )}
-                    </button>
+                    </button> */}
                     {/* data.length === 0 */}
                 </div>
                 <div ref={parent} className='max-w-[360px] flex flex-col mx-auto'>
