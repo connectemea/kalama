@@ -1,4 +1,4 @@
-
+// This poster is deprecated (Used in Kalama 2025). Use CollegeLeaderboardPoster instead.
 
 import React from "react";
 import {
