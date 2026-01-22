@@ -187,23 +187,9 @@ function Index() {
       label: "Download result",
     });
 
-    // Optimized configuration for iOS/Mobile Safari
     html2canvas(poster, {
-      scale: 3, // Reduced scale to avoid memory issues on mobile
+      scale: 5,
       useCORS: true,
-      allowTaint: true,
-      backgroundColor: null,
-      scrollX: -window.scrollX,
-      scrollY: -window.scrollY,
-      windowWidth: document.documentElement.offsetWidth,
-      windowHeight: document.documentElement.offsetHeight,
-      onclone: (clonedDoc) => {
-        // Ensure the element is visible in the clone
-        const clonedPoster = clonedDoc.getElementById(id ? `${id}-resultPosterId` : "resultPosterId");
-        if (clonedPoster) {
-          clonedPoster.style.transform = 'none';
-        }
-      }
     })
       .then((canvas) => {
         const imageUrl = canvas.toDataURL("image/png");
@@ -237,14 +223,8 @@ function Index() {
     });
 
     html2canvas(poster, {
-      scale: 3,
+      scale: 5,
       useCORS: true,
-      allowTaint: true,
-      backgroundColor: null,
-      scrollX: -window.scrollX,
-      scrollY: -window.scrollY,
-      windowWidth: document.documentElement.offsetWidth,
-      windowHeight: document.documentElement.offsetHeight,
     })
       .then((canvas) => {
         canvas.toBlob(async (blob) => {
