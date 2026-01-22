@@ -186,9 +186,24 @@ function Index() {
       action: "Click",
       label: "Download result",
     });
+
+    // Optimized configuration for iOS/Mobile Safari
     html2canvas(poster, {
-      scale: 5,
+      scale: 3, // Reduced scale to avoid memory issues on mobile
       useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+      windowWidth: document.documentElement.offsetWidth,
+      windowHeight: document.documentElement.offsetHeight,
+      onclone: (clonedDoc) => {
+        // Ensure the element is visible in the clone
+        const clonedPoster = clonedDoc.getElementById(id ? `${id}-resultPosterId` : "resultPosterId");
+        if (clonedPoster) {
+          clonedPoster.style.transform = 'none';
+        }
+      }
     })
       .then((canvas) => {
         const imageUrl = canvas.toDataURL("image/png");
@@ -201,6 +216,9 @@ function Index() {
           link.download = "poster.png";
         }
         link.click();
+      })
+      .catch((err) => {
+        console.error("Download failed", err);
       })
       .finally(() => {
         setProcessingAction({ id: null, type: null });
@@ -217,9 +235,16 @@ function Index() {
       action: "Click",
       label: "Share now result",
     });
+
     html2canvas(poster, {
-      scale: 5,
+      scale: 3,
       useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+      windowWidth: document.documentElement.offsetWidth,
+      windowHeight: document.documentElement.offsetHeight,
     })
       .then((canvas) => {
         canvas.toBlob(async (blob) => {
@@ -255,6 +280,7 @@ function Index() {
         });
       })
       .catch((err) => {
+        console.error("Share failed", err);
         setProcessingAction({ id: null, type: null });
       });
   };
