@@ -1,0 +1,32 @@
+.result-bg-inner::before{
+    content: "";
+    position: absolute;
+    bottom: 1.5px;
+    left: 2px;
+    width: calc(100% - 3.5px);
+    height: calc(100% - 3.5px);
+    z-index: -1;
+    background: white;
+}
+.result-bg-inner {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 9px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.result-bg-inner-stage {
+    background: linear-gradient(180deg, #146BB6 0%, #012161 100%);
+}
+.result-bg-inner-off-stage {
+    background: linear-gradient(180deg, #20B09B 0%, #02534C 100%);
+}
+
+.result-bg-stage {
+    background: linear-gradient(180deg, #146BB6 0%, #012161 100%);
+}
+.result-bg-off-stage {
+    background: linear-gradient(180deg, #20B09B 0%, #02534C 100%);
+}
