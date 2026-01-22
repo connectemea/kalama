@@ -77,7 +77,7 @@ function IndividualResultPoster(data ) {
     return (
         <div className={`relative flex items-center flex-col w-[360px] h-full min-h-[450px] mx-auto overflow-hidden justify-between`}>
 
-            <img src={getConfigByPosition(data?.position)?.bg} alt="backgroundImg" className='absolute -z-10 top-0 left-0 right-0 w-full' />
+            <img src={getConfigByPosition(data?.position)?.bg} alt="backgroundImg" className='absolute -z-10 top-0 left-0 right-0 w-[360px] h-[450px]' />
 
             <div className="flex justify-between flex-col h-full mt-[130px] mx-[70px]">
                 <div className={`${getConfigByPosition(data?.position)?.titleStyle} bg-white drop-shadow-[0_3px_0_#1A2600] border rounded-full px-3 py-1 mt-3 min-w-32 max-w-[200px] text-center mx-auto`}>
@@ -98,7 +98,7 @@ function IndividualResultPoster(data ) {
                         <img
                             src={getConfigByPosition(data?.position)?.badge}
                             alt="Badge"
-                            className="absolute -top-3 -right-3 w-[35px]"
+                            className="absolute -top-3 -right-3 w-[35px] h-[35px] object-contain"
                         />
                     </div>
                     <div className="text-center">

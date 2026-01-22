@@ -40,7 +40,7 @@ function index({ data }) {
     return (
         <div className={`relative flex items-center flex-col w-[360px] h-full min-h-[450px] mx-auto overflow-hidden justify-between`}>
 
-            <img src={data?.stageStatus ? stage_bg : off_stage_bg} alt="backgroundImg" className='absolute -z-10 top-0 left-0 right-0 w-full' />
+            <img src={data?.stageStatus ? stage_bg : off_stage_bg} alt="backgroundImg" className='absolute -z-10 top-0 left-0 right-0 w-[360px] h-[450px]'/>
 
             <div className="flex justify-between flex-col h-full mt-[155px] mx-[90px]">
                 <div className={`${data?.stageStatus ? 'border-[#2E9ECD] text-[#2E9ECD] drop-shadow-[0_3px_0_#012161]' : 'border-[#20B09B] text-[#20B09B] drop-shadow-[0_3px_0_#02534C]'} bg-white border rounded-full px-2 py-1 mt-3 max-w-[185px] text-center mx-auto`}>
@@ -58,7 +58,7 @@ function index({ data }) {
                                     <img
                                         src={data.stageStatus ? position_bg_stage : position_bg_off_stage}
                                         alt=""
-                                        className="w-7 min-w-7"
+                                        className="w-7 h-[39.28px]"
                                     />
                                     <span className={`absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[10px] font-semibold ${data?.stageStatus ? 'text-[#012161]' : 'text-[#02534C]'}`}>
                                         0{winner?.position}
