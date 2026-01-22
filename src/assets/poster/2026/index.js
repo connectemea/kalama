@@ -1,11 +1,11 @@
-import stage_bg from "./stage_bg.svg";
-import off_stage_bg from "./off_stage_bg.svg";
-import position_bg_stage from "./position_bg_stage.svg";
-import position_bg_off_stage from "./position_bg_off_stage.svg";
+import stage_bg from "./stage_bg.png";
+import off_stage_bg from "./off_stage_bg.png";
+import position_bg_stage from "./position_bg_stage.png";
+import position_bg_off_stage from "./position_bg_off_stage.png";
 
-import top_element from "./leaderboard/top_element.svg";
-import bottom_element from "./leaderboard/bottom_element.svg";
-import header from "./leaderboard/header.svg";
+import top_element from "./leaderboard/top_element.png";
+import bottom_element from "./leaderboard/bottom_element.png";
+import header from "./leaderboard/header.png";
 
 import individual_first_bg from "./individual/individual_first_bg.png";
 import individual_second_bg from "./individual/individual_second_bg.png";
