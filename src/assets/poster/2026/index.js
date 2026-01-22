@@ -7,12 +7,12 @@ import top_element from "./leaderboard/top_element.svg";
 import bottom_element from "./leaderboard/bottom_element.svg";
 import header from "./leaderboard/header.svg";
 
-import individual_first_bg from "./individual/individual_first_bg.svg";
-import individual_second_bg from "./individual/individual_second_bg.svg";
-import individual_third_bg from "./individual/individual_third_bg.svg";
-import first_badge from "./individual/first_badge.svg";
-import second_badge from "./individual/second_badge.svg";
-import third_badge from "./individual/third_badge.svg";
+import individual_first_bg from "./individual/individual_first_bg.png";
+import individual_second_bg from "./individual/individual_second_bg.png";
+import individual_third_bg from "./individual/individual_third_bg.png";
+import first_badge from "./individual/first_badge.png";
+import second_badge from "./individual/second_badge.png";
+import third_badge from "./individual/third_badge.png";
 
 export {
     stage_bg,
