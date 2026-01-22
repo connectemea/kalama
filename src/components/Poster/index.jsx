@@ -54,7 +54,7 @@ function index({ data }) {
                     {data?.winners?.map((winner, index) => (
                         <div key={index}>
                             <div className="flex max-w-[270px] items-start">
-                                <div className="relative h-fit">
+                                <div className="relative h-fit shrink-0">
                                     <img
                                         src={data.stageStatus ? position_bg_stage : position_bg_off_stage}
                                         alt=""
