@@ -76,6 +76,7 @@ function Index() {
     // }
 
     setSelectedProgram(program);
+    setActiveTab("event");
     setPosterLoading(true);
 
     try {
