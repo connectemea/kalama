@@ -61,11 +61,11 @@ function index({ college }) {
 
     function pickColor(rank) {
         if (rank === 1) {
-            return '#276692'
+            return '#419544'
         } else if (rank === 2) {
-            return '#00A99D'
-        } else if (rank === 3) {
             return '#8DC63F'
+        } else if (rank === 3) {
+            return '#00A99D'
 
         } else if (rank === 4) {
             return '#F26241'

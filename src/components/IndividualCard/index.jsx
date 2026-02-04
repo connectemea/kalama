@@ -1,22 +1,22 @@
-import { Star } from '@/assets/elements';
+import Star from '@/components/ui/Star';
 
 function index({ individual, index, title, individualIndex  }) {
 
     function pickShadowColor(index) {
-        const colors = ['#012161', '#3548AC', '#146BB6', '#59AED2'];
-        const color = colors[index] || '#012161';
+        const colors = ['#419544', '#8DC63F', '#00A99D', '#047169'];
+        const color = colors[index] || '#419544';
         return `1.5px 1.5px 2px ${color}80`;
     }
 
     function pickColor(index) {
         if (index === 0) {
-            return '#012161'
+            return '#419544'
         } else if (index === 1) {
-            return '#3548AC'
+            return '#8DC63F'
         } else if (index === 2) {
-            return '#146BB6'
+            return '#00A99D'
         } else if (index === 3) {
-            return '#59AED2'
+            return '#047169'
         } else {
             return '#000000'
         }
@@ -36,7 +36,7 @@ function index({ individual, index, title, individualIndex  }) {
             className="flex flex-col relative justify-start rounded-xl w-full flex-1 bg-white items-center p-2 pb-2 mb-4 border border-b-[4px] mx-auto overflow-hidden"
             style={{ borderColor: getBorderColor(index), borderBottomColor: getBorderColor(index) }}
         >
-            <img src={Star} alt="" className='absolute top-0 -right-[15px] w-[30px] h-[30px]' />
+            <Star color={getBorderColor(index)} className='absolute top-0 -right-[15px] w-[30px] h-[30px]' />
             {/* Category Title Inside Card */}
             {individualIndex === 0 && (
                 <h3
@@ -71,7 +71,7 @@ function index({ individual, index, title, individualIndex  }) {
                     </div>
                 </div>
             </div>
-            <img src={Star} alt="" className='absolute -bottom-[20px] left-20 w-[30px] h-[50px]' />
+            <Star color={getBorderColor(index)} className='absolute -bottom-[20px] left-20 w-[30px] h-[50px]' />
         </div>
     )
 }

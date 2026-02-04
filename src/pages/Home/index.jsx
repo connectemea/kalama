@@ -1,4 +1,4 @@
-import { Logo , Logo_Kalolsavam, Logo_Aikia } from "@/assets/logos/kalappuram";
+import { Logo , Logo_Kalolsavam, Logo_Aikia } from "@/assets/logos/kalamelam";
 import HomeBtn from "@/components/ui/HomeBtn";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
@@ -8,38 +8,6 @@ function Index() {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col z-10 justify-around gap-10 min-h-[calc(100dvh-100px)] py-10 mx-auto  w-full overflow-x-hidden overflow-y-auto relative">
-
-<motion.div
-    className="-z-10 absolute top-52 -left-56 w-[300px] h-[300px] bg-gradient-to-r from-green-400 via-teal-500 to-blue-500 rounded-full blur-2xl opacity-40"
-    initial={{ scale: 1, x: 0 }}
-    animate={{
-      scale: [1, 1.2, 1], // Pulsating effect
-      x: [0, -20, 0], // Slight horizontal movement
-      y: [0, 20, 0], // Up and down motion
-    }}
-    transition={{
-      duration: 6, // Total animation duration
-      repeat: Infinity, // Infinite loop
-      ease: "easeInOut",
-    }}
-  ></motion.div>
-
-
-  <motion.div
-    className="-z-10 absolute -top-52 -right-20 w-[300px] h-[300px] bg-gradient-to-r from-purple-400 via-violet-500 to-red-500 rounded-full blur-2xl opacity-50"
-    initial={{ scale: 1, x: 0 }}
-    animate={{
-      scale: [1, 1.3, 1], // Pulsating effect
-      x: [0, 20, 0], // Slight horizontal movement
-      y: [0, -20, 0], // Up and down motion
-    }}
-    transition={{
-      duration: 7, // Slightly different duration for variation
-      repeat: Infinity, // Infinite loop
-      ease: "easeInOut",
-    }}
-  ></motion.div>
-  
 
       {/* Logo Aikiam */}
       <motion.div initial={{ opacity: 0, scale: 1.5 }} // Start off-screen to the right, and slightly scaled up

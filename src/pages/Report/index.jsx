@@ -77,7 +77,7 @@ function ResultsFull() {
 
             <div className='my-10'>
                 <div className="flex items-center justify-center w-full p-2 border border-gray-800 shadow-sm max-w-[400px] mx-auto">
-                    <img src={SearchIcon} alt="Search Icon" className="w-6 h-6" />
+                    <img src={SearchIcon} alt="Search Icon" className="w-[10px] h-[10px]" />
                     <input
                         type="text"
                         placeholder="Search events or colleges..."

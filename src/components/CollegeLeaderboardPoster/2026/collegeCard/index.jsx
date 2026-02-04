@@ -35,11 +35,11 @@ function CollegeCard({ college }) {
 
     function pickColor(rank) {
         if (rank === 1) {
-            return '#012161'
+            return '#419544'
         } else if (rank === 2) {
-            return '#3548AC'
+            return '#8DC63F'
         } else if (rank === 3) {
-            return '#146BB6'
+            return '#00A99D'
         } else {
             return '#000000'
         }

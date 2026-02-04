@@ -1,0 +1,20 @@
+function Star({ color = '#419544', className = '', ...props }) {
+    return (
+        <svg 
+            width="24" 
+            height="20" 
+            viewBox="0 0 24 20" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            {...props}
+        >
+            <path 
+                d="M12.1109 24C13.2194 16.9477 17.2379 12.9338 24 11.8467C17.2933 10.8153 13.2748 6.80139 12.1386 0C11.03 6.80139 7.01155 10.7875 0 11.9024C3.29792 12.1812 6.04157 13.4634 8.31409 15.7491C10.5866 18.007 11.8337 20.7666 12.1109 24Z" 
+                fill={color}
+            />
+        </svg>
+    );
+}
+
+export default Star;

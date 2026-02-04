@@ -1,4 +1,4 @@
-import { Star, pradhiba, BgRank, Empty } from '@/assets/elements';
+import { pradhiba, BgRank, Empty } from '@/assets/elements';
 import classNames from 'classnames';
 import { college } from '@/assets/icons';
 import { useState } from 'react';

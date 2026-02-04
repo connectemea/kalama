@@ -10,7 +10,7 @@ function index({
         <button 
             className={cn('border-none rounded-[200px] w-[171px] h-[36px] opacity-100 text-white font-medium flex items-center justify-center gap-2', className)} 
             style={{
-                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #0F4984 35.95%, #012161 100%)',
+                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)',
             }}
             onClick={onClick} 
             {...props}
