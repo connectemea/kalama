@@ -15,17 +15,17 @@ const getConfigByPosition = (position) => {
             return {
                 bg: individual_first_bg,
                 badge: first_badge,
-                titleStyle: 'border-[#789D29] text-[#789D29]',
-                nameStyle: 'text-[#1A2600]',
-                collegeStyle: 'text-[#789D29]',
+                titleStyle: 'border-[#084A46] text-[#01A89E]',
+                nameStyle: 'text-[#084A46]',
+                collegeStyle: 'text-[#01A89E]',
             };
         case 2:
             return {
                 bg: individual_second_bg,
                 badge: second_badge,
-                titleStyle: 'border-[#0AAD5C] text-[#0AAD5C]',
-                nameStyle: 'text-[#093E32]',
-                collegeStyle: 'text-[#0AAD5C]',
+                titleStyle: 'border-[#429545] text-[#429545]',
+                nameStyle: 'text-[#0C390D]',
+                collegeStyle: 'text-[#429545]',
             };
         case 3:
             return {
@@ -39,14 +39,14 @@ const getConfigByPosition = (position) => {
             return {
                 bg: individual_first_bg,
                 badge: first_badge,
-                titleStyle: 'border-[#789D29] text-[#789D29]',
-                nameStyle: 'text-[#1A2600]',
-                collegeStyle: 'text-[#789D29]',
+                titleStyle: 'border-[#8EC63F] text-[#8EC63F]',
+                nameStyle: 'text-[#598B13]',
+                collegeStyle: 'text-[#8EC63F]',
             };
     }
 }
 
-function IndividualResultPoster(data ) {
+function IndividualResultPoster(data) {
 
     function ExtractedText(text) {
         if (!text) {

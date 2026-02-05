@@ -32,7 +32,7 @@ function index({ data ,ResultCount}) {
                     style={{
                         background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
                     }}>
-                        After<div className='bg-[#419544] rounded-sm px-[2px] text-shadow-xs'>{ResultCount}</div>Results
+                        After<div className='bg-[#8EC63F] rounded-sm px-[2px] text-shadow-xs'>{ResultCount}</div>Results
                     </div>
                     <div className="mt-3 mb-32 space-y-[5px] h-fit">
                         {top5Colleges.map((college, index) => (
