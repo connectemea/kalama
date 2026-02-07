@@ -211,8 +211,8 @@ const eventData = {
         stage: "Stage 4",
         programs: [
           { time: "9:30 AM", name: "MAPPILA PATTU (FEMALE)" },
-          { time: "1:30 PM", name: "MAPPILA PATTU GROUP" },
-          { time: "5:00 PM", name: "MAPPILA PATTU (MALE)" }
+          { time: "1:30 PM", name: "MAPPILA PATTU (MALE)" },
+          { time: "5:00 PM", name: "MAPPILA PATTU GROUP" }
         ]
       }
     ]
