@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CollegeTab from './components/collegeTab';
 import IndividualTab from './components/individualTab';
-import { Logo_aikiam, Logo_kalama, Logo_kaloolsavm, Logo_GloryBoard } from "@/assets/logos";
+import { Logo, Logo_Kalolsavam, Logo_Aikia } from "@/assets/logos/kalakissa";
 import PosterTab from './components/PosterTab';
 import { Avatar_bl, Avatar_br } from '@/assets/elements';
 import QrCode from '@/assets/qrcode.svg'
@@ -171,11 +171,11 @@ function Index() {
                 <div className="flex justify-between items-center w-full max-w-[90vw] mx-auto px-4">
                     <div className="flex gap-4 items-center justify-center h-fit w-fit">
                         <div>
-                            <img src={Logo_kalama} alt="Kalama Logo" className="mx-auto max-w-[10vh] w-full" />
+                            <img src={Logo} alt="Kalakissa Logo" className="mx-auto max-w-[10vh] w-full" />
                         </div>
                         <div className="flex flex-col items-center justify-between gap-10 h-full">
-                            <img src={Logo_aikiam} alt="Aikiam Logo" className="mx-auto max-w-[10vw] w-full" />
-                            <img src={Logo_kaloolsavm} alt="Kaloolsavm Logo" className="mx-auto w-[12vw] max-w-[12vw] " />
+                            <img src={Logo_Aikia} alt="Aikiam Logo" className="mx-auto max-w-[10vw] w-full" />
+                            <img src={Logo_Kalolsavam} alt="Kaloolsavm Logo" className="mx-auto w-[12vw] max-w-[12vw] " />
                         </div>
                     </div>
                     <div>

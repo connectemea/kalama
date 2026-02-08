@@ -1,4 +1,4 @@
-import { Star, pradhiba, BgRank, Empty } from '@/assets/elements';
+import { pradhiba, BgRank, Empty } from '@/assets/elements';
 import classNames from 'classnames';
 import { college, SearchIcon } from '@/assets/icons';
 import { useState } from 'react';
@@ -82,7 +82,7 @@ function CollegeTab({ data, ResultCount }) {
                     <div 
                         className='rounded-[200px] relative h-[30px] w-[30px] flex items-center justify-center flex-shrink-0'
                         style={{
-                            background: 'radial-gradient(50% 50% at 50% 50%, #0F5BA8 0%, #022564 100%)'
+                            background: 'radial-gradient(52.63% 52.63% at 50% 50%, #F86270 0%, #D71F30 100%)'
                         }}
                     >
                         <img src={SearchIcon} alt="Search" className="w-4 h-4" />
@@ -96,8 +96,8 @@ function CollegeTab({ data, ResultCount }) {
                     />
                 </div>
                 <div className='flex items-center justify-between max-w-[360px] mx-auto my-4'>
-                    <div className='flex items-start justify-start text-center bg-[#146BB6] w-fit gap-2 rounded-[200px] text-white font-semibold px-2 py-[2px]'>
-                        After <div className='text-[#ccff00]'>{ResultCount || "..."}</div>Results
+                    <div className='flex items-start justify-start text-center bg-[#EA9223] w-fit gap-2 rounded-[200px] text-white font-semibold px-2 py-[2px]'>
+                        After <div className='text-white'>{ResultCount || "..."}</div>Results
                     </div>
                     <button disabled={loading || data.length === 0}  className="flex items-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed border border-gray-700 px-2 text-[13px] py-1 min-w-[100px] rounded-[200px]" onClick={() => handleShare()}>
                         {loading ? (

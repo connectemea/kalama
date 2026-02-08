@@ -30,9 +30,9 @@ function index({ data ,ResultCount}) {
                     </div>
                     <div className='flex mb-4 mt-7 rounded-full text-sm items-center justify-center text-center  w-fit gap-1.5 mx-auto text-white font-semibold px-4 py-[3px]'
                     style={{
-                        background: 'radial-gradient(50% 50% at 50% 50%, #0F4984 0%, #012161 100%)'
+                        background: '#EA9223'
                     }}>
-                        After<div className='bg-[#3592BA] rounded-sm px-[2px] text-shadow-xs'>{ResultCount}</div>Results
+                        After<div className='bg-white/20 rounded-sm px-[2px] text-shadow-xs'>{ResultCount}</div>Results
                     </div>
                     <div className="mt-3 mb-32 space-y-[5px] h-fit">
                         {top5Colleges.map((college, index) => (

@@ -1,4 +1,4 @@
-import { Star } from '../../assets/elements';
+import Star from '@/components/ui/Star';
 
 function index({ college }) {
 
@@ -13,11 +13,11 @@ function index({ college }) {
 
     function pickColor(rank) {
         if (rank === 1) {
-            return '#012161'
+            return '#D71F30'
         } else if (rank === 2) {
-            return '#3548AC'
+            return '#15A352'
         } else if (rank === 3) {
-            return '#146BB6'
+            return '#EA9223'
         } else {
             return '#000000'
         }
@@ -29,11 +29,11 @@ function index({ college }) {
 
     function pickBgColor(rank) {
         if (rank === 1) {
-            return 'bg-[#012161]'
+            return 'bg-[#D71F30]'
         } else if (rank === 2) {
-            return 'bg-[#3548AC]'
+            return 'bg-[#15A352]'
         } else if (rank === 3) {
-            return 'bg-[#146BB6]'
+            return 'bg-[#EA9223]'
         } else {
             return 'bg-[#000000]'
         }
@@ -46,7 +46,7 @@ function index({ college }) {
             className="flex relative justify-start gap-3 rounded-xl w-full flex-1 bg-white items-center p-2 pb-2 mb-4 border border-b-[4px] mx-auto overflow-hidden"
             style={{ borderColor: getBorderColor(college.rank), borderBottomColor: getBorderColor(college.rank) }}
         >
-            <img src={Star} alt="" className='absolute top-0 -right-[15px] w-[30px] h-[30px]' />
+            <Star color={getBorderColor(college.rank)} className='absolute top-0 -right-[15px] w-[30px] h-[30px]' />
             <div className="flex items-center gap-4 flex-1 w-full min-h-[60px]">
                 <BgRank color={pickColor(college.rank)} rank={college.rank} />
                 <div className='flex-1 w-full flex flex-col gap-1 '>
@@ -72,7 +72,7 @@ function index({ college }) {
                 </div>
             
             </div>
-            <img src={Star} alt="" className='absolute -bottom-[20px] left-20 w-[30px] h-[50px]' />
+            <Star color={getBorderColor(college.rank)} className='absolute -bottom-[20px] left-20 w-[30px] h-[50px]' />
         
         </div>
     )

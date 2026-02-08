@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { eventData } from '@/const/StageData';
 import { motion, AnimatePresence } from "motion/react";
 import { SearchIcon } from '@/assets/icons';
-import { Star } from '@/assets/elements';
+import Star from '@/components/ui/Star';
 import SearchEmpty from '@/assets/gifs/notfound.webp';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
@@ -68,11 +68,11 @@ function Schedule() {
 
   function pickColor(index) {
     if (index === 1) {
-      return '#012161'
+      return '#D71F30'
     } else if (index === 2) {
-      return '#3548AC'
+      return '#15A352'
     } else if (index === 3) {
-      return '#146BB6'
+      return '#EA9223'
     } else {
       return '#000000'
     }
@@ -136,7 +136,7 @@ function Schedule() {
                 key={date}
                 className="rounded-xl border-none cursor-pointer"
                 style={{
-                  background: selectedDate === date ? '#146BB6' : '#012161',
+                  background: selectedDate === date ? '#D71F30' : '#D71F30',
                   borderRadius: '12px',
                   paddingTop: '4px',
                   paddingBottom: '0'
@@ -146,7 +146,7 @@ function Schedule() {
                   onClick={() => handleDateSelect(date)}
                   className={`px-3 rounded-xl snap-start whitespace-nowrap border-2 transition-all ease-in-out block w-full ${selectedDate === date
                     ? 'bg-white'
-                    : 'bg-white text-[#012161] border-[#012161] hover:bg-customBlue/90 hover:border-customBlue hover:text-white'
+                    : 'bg-white text-[#D71F30] border-[#D71F30] hover:bg-[#D71F30]/90 hover:border-[#D71F30] hover:text-white'
                     }`}
                   style={{
                     transform: 'translateY(-4px)',
@@ -156,8 +156,8 @@ function Schedule() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     ...(selectedDate === date ? {
-                      color: '#146BB6',
-                      borderColor: '#146BB6'
+                      color: '#D71F30',
+                      borderColor: '#D71F30'
                     } : {})
                   }}
                 >
@@ -177,7 +177,7 @@ function Schedule() {
             <div 
               className='rounded-[200px] relative h-[30px] w-[30px] flex items-center justify-center flex-shrink-0'
               style={{
-                background: 'radial-gradient(50% 50% at 50% 50%, #0F5BA8 0%, #022564 100%)'
+                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #F86270 0%, #D71F30 100%)'
               }}
             >
               <img src={SearchIcon} alt="Search" className="w-4 h-4" />
@@ -220,7 +220,7 @@ function Schedule() {
                       <div className="flex relative justify-start gap-3 rounded-xl w-full flex-1 bg-white p-2 pb-2 mb-4 border border-b-[4px] mx-auto overflow-hidden"
                         style={{ borderColor: getBorderColor((index % 3) + 1), borderBottomColor: getBorderColor((index % 3) + 1) }}
                       >
-                        <img src={Star} alt="" className='absolute top-0 -right-[15px] w-[30px] h-[30px]' />
+                        <Star color={getBorderColor((index % 3) + 1)} className='absolute top-0 -right-[15px] w-[30px] h-[30px]' />
                         <div className="flex flex-col gap-1 flex-1 w-full">
                           <div className="text-center">
                             <span 
@@ -249,7 +249,7 @@ function Schedule() {
                             ))}
                           </div>
                         </div>
-                        <img src={Star} alt="" className='absolute -bottom-[20px] left-20 w-[30px] h-[50px]' />
+                        <Star color={getBorderColor((index % 3) + 1)} className='absolute -bottom-[20px] left-20 w-[30px] h-[50px]' />
                       </div>
                     </motion.div>
                   ))
@@ -294,7 +294,7 @@ function Schedule() {
                       style={{ borderColor: getBorderColor((index % 3) + 1), borderBottomColor: getBorderColor((index % 3) + 1) }}
                       onClick={() => handleSelectStage(stage.id)}
                     >
-                      <img src={Star} alt="" className='absolute top-5 -right-[15px] w-[30px] h-[30px]' />
+                      <Star color={getBorderColor((index % 3) + 1)} className='absolute top-5 -right-[15px] w-[30px] h-[30px]' />
                       <div className="flex flex-col gap-1 flex-1 w-full text-center">
                         <span 
                           className="inline-block px-3 py-1 rounded-[200px] text-white text-xs font-semibold mb-2 mx-auto"
@@ -304,7 +304,7 @@ function Schedule() {
                         </span>
                         <p className="text-xl font-black uppercase text-gray-800">{stage.name}</p>
                       </div>
-                      <img src={Star} alt="" className='absolute -bottom-[22px] left-8 w-[40px] h-[50px]' />
+                      <Star color={getBorderColor((index % 3) + 1)} className='absolute -bottom-[22px] left-8 w-[40px] h-[50px]' />
                     </div>
                   </motion.div>
                 ))}

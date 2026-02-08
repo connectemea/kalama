@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar_bl, Avatar_br } from '@/assets/elements';
 import { Logo_p_logo } from '@/assets/logos';
-import { Logo_GloryBoard } from '@/assets/logos/kalappuram';
+import { Logo_GloryBoard } from '@/assets/logos/kalakissa';
 import { Outlet } from "react-router-dom";
 import { motion } from "motion/react";
 import { Page_bottom } from '../../assets/elements';
