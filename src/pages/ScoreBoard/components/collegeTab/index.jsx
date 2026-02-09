@@ -49,9 +49,9 @@ function CollegeTab({ data, ResultCount }) {
                     try {
                         // Share the image as a file
                         await navigator.share({
-                            title: 'Kalappuram Leaderboard',
-                            url: 'https://czonekalappuram.in/',
-                            text: "Check out the Kalappuram Leaderboard🎉",
+                            title: 'Kalakissa Leaderboard',
+                            url: 'https://azonekalolsavam.in',
+                            text: "Check out the Kalakissa Leaderboard🎉",
                             files: [file],
                         });
                         setLoading(false)

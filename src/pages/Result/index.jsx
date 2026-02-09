@@ -239,8 +239,8 @@ function Index() {
           if (navigator.share) {
             try {
               await navigator.share({
-                title: "Kalappuram",
-                url: "https://czonekalappuram.in",
+                title: "Kalakissa",
+                url: "https://azonekalolsavam.in",
                 text: "Check out the winners! 🎉",
                 files: [file],
               });
