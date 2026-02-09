@@ -18,15 +18,15 @@
     z-index: -1;
 }
 .result-bg-inner-stage {
-    background: linear-gradient(180deg, #146BB6 0%, #012161 100%);
+    background: linear-gradient(180deg, #A69F0F 0%, #11CF50 100%);
 }
 .result-bg-inner-off-stage {
-    background: linear-gradient(180deg, #20B09B 0%, #02534C 100%);
+    background: linear-gradient(180deg, #ED0554 0%, #FC8157 100%);
 }
 
 .result-bg-stage {
-    background: linear-gradient(180deg, #146BB6 0%, #012161 100%);
+    background: linear-gradient(180deg, #A69F0F 0%, #11CF50 100%);
 }
 .result-bg-off-stage {
-    background: linear-gradient(180deg, #20B09B 0%, #02534C 100%);
+    background: linear-gradient(180deg, #ED0554 0%, #FC8157 100%);
 }

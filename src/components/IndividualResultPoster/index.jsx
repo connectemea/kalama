@@ -15,33 +15,33 @@ const getConfigByPosition = (position) => {
             return {
                 bg: individual_first_bg,
                 badge: first_badge,
-                titleStyle: 'border-[#789D29] text-[#789D29]',
-                nameStyle: 'text-[#1A2600]',
-                collegeStyle: 'text-[#789D29]',
+                titleStyle: 'border-[#D81F31] text-[#D81F31]',
+                nameStyle: 'text-[#720C16]',
+                collegeStyle: 'text-[#D81F31]',
             };
         case 2:
             return {
                 bg: individual_second_bg,
                 badge: second_badge,
-                titleStyle: 'border-[#0AAD5C] text-[#0AAD5C]',
-                nameStyle: 'text-[#093E32]',
-                collegeStyle: 'text-[#0AAD5C]',
+                titleStyle: 'border-[#15A253] text-[#15A253]',
+                nameStyle: 'text-[#004E22]',
+                collegeStyle: 'text-[#15A253]',
             };
         case 3:
             return {
                 bg: individual_third_bg,
                 badge: third_badge,
-                titleStyle: 'border-[#B5496B] text-[#B5496B]',
-                nameStyle: 'text-[#521666]',
-                collegeStyle: 'text-[#B5496B]',
+                titleStyle: 'border-[#EA9224] text-[#EA9224]',
+                nameStyle: 'text-[#804801]',
+                collegeStyle: 'text-[#EA9224]',
             };
         default:
             return {
                 bg: individual_first_bg,
                 badge: first_badge,
-                titleStyle: 'border-[#789D29] text-[#789D29]',
-                nameStyle: 'text-[#1A2600]',
-                collegeStyle: 'text-[#789D29]',
+                titleStyle: 'border-[#D81F31] text-[#D81F31]',
+                nameStyle: 'text-[#720C16]',
+                collegeStyle: 'text-[#D81F31]',
             };
     }
 }

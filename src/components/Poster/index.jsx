@@ -10,7 +10,6 @@ import {
     off_stage_star_2,
     stage_glory_logo,
     off_stage_glory_logo,
-    catalyst_logo,
 } from "@/assets/poster/2026/index.js";
 import classNames from 'classnames';
 import './style.css';
@@ -59,7 +58,7 @@ function index({ data }) {
 
                     <div className={`${data?.stageStatus ? 'result-bg-inner-stage' : 'result-bg-inner-off-stage'} result-bg-inner rounded-t-full before:rounded-t-full`} />
                     
-                    <div className={`${data?.stageStatus ? 'border-[#2E9ECD] text-[#2E9ECD] drop-shadow-[0_3px_0_#012161]' : 'border-[#20B09B] text-[#20B09B] drop-shadow-[0_3px_0_#02534C]'} bg-white border rounded-full px-2 py-1 max-w-[185px] text-center mx-auto`}>
+                    <div className={`${data?.stageStatus ? 'border-[#A69F0F] text-[#A69F0F] drop-shadow-[0_3px_0_#11CF50]' : 'border-[#ED0854] text-[#ED0854] drop-shadow-[0_3px_0_#FC8157]'} bg-white border rounded-full px-2 py-1 max-w-[185px] text-center mx-auto`}>
                         <p className={classNames('text-[11px] leading-3 font-extrabold text-center wordIssue',
                             {
                                 'text-[10px] ': data?.programName?.length > 20,
@@ -74,7 +73,7 @@ function index({ data }) {
                                         alt=""
                                         className="w-7 h-[39.28px]"
                                     />
-                                    <span className={`absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[10px] font-semibold ${data?.stageStatus ? 'text-[#012161]' : 'text-[#02534C]'}`}>
+                                    <span className={`absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-[10px] font-semibold ${data?.stageStatus ? 'text-[#30C543]' : 'text-[#FC7E57]'}`}>
                                         0{winner?.position}
                                     </span>
                                 </div>
@@ -128,7 +127,6 @@ function index({ data }) {
                 </div>
                 <div className="flex justify-between items-center w-full mt-2">
                     <img src={data?.stageStatus ? stage_glory_logo : off_stage_glory_logo} alt="gloryBoard Logo" className='w-10' />
-                    <img src={catalyst_logo} alt="catalyst Logo" className='w-16 -mr-2' />
                 </div>
             </div>
 

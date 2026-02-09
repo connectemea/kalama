@@ -8,7 +8,6 @@ import off_stage_star_1 from "./program/off_stage_star_1.png";
 import off_stage_star_2 from "./program/off_stage_star_2.png";
 import stage_glory_logo from "./program/stage_glory_logo.png";
 import off_stage_glory_logo from "./program/off_stage_glory_logo.png";
-import catalyst_logo from "./program/catalyst_logo.png";
 
 import top_element from "./leaderboard/top_element.png";
 import bottom_element from "./leaderboard/bottom_element.png";
@@ -41,5 +40,4 @@ export {
     off_stage_star_2,
     stage_glory_logo,
     off_stage_glory_logo,
-    catalyst_logo,
 }

@@ -28,11 +28,11 @@ function index({ data ,ResultCount}) {
                     <div className="flex items-center justify-center">
                         <img className="w-[250px] pt-0" src={header} alt="header" />
                     </div>
-                    <div className='flex mb-4 mt-7 rounded-full text-sm items-center justify-center text-center  w-fit gap-1.5 mx-auto text-white font-semibold px-4 py-[3px]'
+                    <div className='flex mb-4 mt-5 rounded-full text-sm items-center justify-center text-center  w-fit gap-1.5 mx-auto text-white font-semibold px-4 py-[3px]'
                     style={{
-                        background: '#EA9223'
+                        background: 'radial-gradient(50% 50% at 50% 50%, #EA9224 0%, #D71F30 100%)'
                     }}>
-                        After<div className='bg-white/20 rounded-sm px-[2px] text-shadow-xs'>{ResultCount}</div>Results
+                        After<div className='bg-[#EA9224] rounded-sm px-[2px] text-shadow-xs'>{ResultCount}</div>Results
                     </div>
                     <div className="mt-3 mb-32 space-y-[5px] h-fit">
                         {top5Colleges.map((college, index) => (
