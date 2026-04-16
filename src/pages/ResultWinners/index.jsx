@@ -214,8 +214,8 @@ function Index() {
         if (navigator.share) {
           try {
             await navigator.share({
-              title: "Kalamelam",
-              url: 'https://dzonekalolsavam.in',
+              title: "Kalaikotta",
+              url: 'https://kalaikotta.in/',
               text: "Check out the winners! 🎉",
               files: [file],
             });
