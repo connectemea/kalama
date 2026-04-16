@@ -12,7 +12,7 @@ export default {
 			colors: {
 				'borderColor': '#231F20',
 				'customBlue': '#276692',
-				'customGreen': '#8DC63F',
+				'customGreen': '#cd205c',
 				'customOrange': '#F99D1C',
 				'customEmerald': '#00A99D',
 				'customRed': '#F44336',
@@ -22,4 +22,5 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 }
+
 

@@ -68,9 +68,9 @@ function Schedule() {
 
   function pickColor(index) {
     if (index === 1) {
-      return '#419544'
+      return '#a4063d'
     } else if (index === 2) {
-      return '#8DC63F'
+      return '#cd205c'
     } else if (index === 3) {
       return '#00A99D'
     } else {
@@ -136,7 +136,7 @@ function Schedule() {
                 key={date}
                 className="rounded-xl border-none cursor-pointer"
                 style={{
-                  background: selectedDate === date ? '#419544' : '#419544',
+                  background: selectedDate === date ? '#a4063d' : '#a4063d',
                   borderRadius: '12px',
                   paddingTop: '4px',
                   paddingBottom: '0'
@@ -146,7 +146,7 @@ function Schedule() {
                   onClick={() => handleDateSelect(date)}
                   className={`px-3 rounded-xl snap-start whitespace-nowrap border-2 transition-all ease-in-out block w-full ${selectedDate === date
                     ? 'bg-white'
-                    : 'bg-white text-[#419544] border-[#419544] hover:bg-[#419544]/90 hover:border-[#419544] hover:text-white'
+                    : 'bg-white text-[#a4063d] border-[#a4063d] hover:bg-[#a4063d]/90 hover:border-[#a4063d] hover:text-white'
                     }`}
                   style={{
                     transform: 'translateY(-4px)',
@@ -156,8 +156,8 @@ function Schedule() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     ...(selectedDate === date ? {
-                      color: '#419544',
-                      borderColor: '#419544'
+                      color: '#a4063d',
+                      borderColor: '#a4063d'
                     } : {})
                   }}
                 >
@@ -177,7 +177,7 @@ function Schedule() {
             <div 
               className='rounded-[200px] relative h-[30px] w-[30px] flex items-center justify-center flex-shrink-0'
               style={{
-                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
+                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #cd205c 0%, #a4063d 100%)'
               }}
             >
               <img src={SearchIcon} alt="Search" className="w-[10px] h-[10px]" />
@@ -318,3 +318,4 @@ function Schedule() {
 }
 
 export default Schedule;
+

@@ -30,7 +30,7 @@ function index({ data ,ResultCount}) {
                     </div>
                     <div className='flex mb-4 mt-7 rounded-full text-sm items-center justify-center text-center  w-fit gap-1.5 mx-auto text-white font-semibold px-4 py-[3px]'
                     style={{
-                        background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
+                        background: 'radial-gradient(52.63% 52.63% at 50% 50%, #cd205c 0%, #a4063d 100%)'
                     }}>
                         After<div className='bg-[#8EC63F] rounded-sm px-[2px] text-shadow-xs'>{ResultCount}</div>Results
                     </div>
@@ -48,4 +48,5 @@ function index({ data ,ResultCount}) {
 }
 
 export default index;
+
 

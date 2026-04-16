@@ -13,11 +13,11 @@ function index({ college }) {
 
     function pickColor(rank) {
         if (rank === 1) {
-            return '#419544'
+            return '#32ac41'
         } else if (rank === 2) {
-            return '#8DC63F'
+            return '#ed2024'
         } else if (rank === 3) {
-            return '#00A99D'
+            return '#682d91'
         } else {
             return '#000000'
         }
@@ -29,11 +29,11 @@ function index({ college }) {
 
     function pickBgColor(rank) {
         if (rank === 1) {
-            return 'bg-[#419544]'
+            return 'bg-[#32ac41]'
         } else if (rank === 2) {
-            return 'bg-[#8DC63F]'
+            return 'bg-[#ed2024]'
         } else if (rank === 3) {
-            return 'bg-[#00A99D]'
+            return 'bg-[#682d91]'
         } else {
             return 'bg-[#000000]'
         }
@@ -79,3 +79,4 @@ function index({ college }) {
 }
 
 export default index
+

@@ -1,4 +1,4 @@
-function Star({ color = '#419544', className = '', ...props }) {
+function Star({ color = '#a4063d', className = '', ...props }) {
     return (
         <svg 
             width="24" 
@@ -18,3 +18,4 @@ function Star({ color = '#419544', className = '', ...props }) {
 }
 
 export default Star;
+

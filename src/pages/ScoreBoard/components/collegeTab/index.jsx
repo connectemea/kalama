@@ -82,7 +82,7 @@ function CollegeTab({ data, ResultCount }) {
                     <div 
                         className='rounded-[200px] relative h-[30px] w-[30px] flex items-center justify-center flex-shrink-0'
                         style={{
-                            background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
+                            background: 'radial-gradient(52.63% 52.63% at 50% 50%, #cd205c 0%, #a4063d 100%)'
                         }}
                     >
                         <img src={SearchIcon} alt="Search" className="w-[10px] h-[10px]" />
@@ -98,7 +98,7 @@ function CollegeTab({ data, ResultCount }) {
                 <div className='flex items-center justify-between max-w-[360px] mx-auto my-4'>
                     <div className='flex items-start justify-start text-center w-fit gap-2 rounded-[200px] text-white font-semibold px-2 py-[2px]'
                         style={{
-                            background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
+                            background: 'radial-gradient(52.63% 52.63% at 50% 50%, #cd205c 0%, #a4063d 100%)'
                         }}>
                         After <div className='text-[#ccff00]'>{ResultCount || "..."}</div>Results
                     </div>

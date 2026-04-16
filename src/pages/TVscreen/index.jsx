@@ -246,7 +246,7 @@ function Index() {
 
 
                 <div
-                    className="-z-10 absolute top-[8%] -left-2 w-[300px] h-[300px] bg-[#8DC63F]/70 rounded-full blur-3xl opacity-40"
+                    className="-z-10 absolute top-[8%] -left-2 w-[300px] h-[300px] bg-[#cd205c]/70 rounded-full blur-3xl opacity-40"
                 />
 
 
@@ -272,3 +272,4 @@ function Index() {
 }
 
 export default Index;
+

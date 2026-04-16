@@ -12,9 +12,9 @@ function Stage() {
 
   function pickColor(index) {
     if (index === 1) {
-      return '#419544'
+      return '#a4063d'
     } else if (index === 2) {
-      return '#8DC63F'
+      return '#cd205c'
     } else if (index === 3) {
       return '#00A99D'
     } else {
@@ -104,3 +104,4 @@ function Stage() {
 }
 
 export default Stage;
+

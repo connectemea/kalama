@@ -116,13 +116,13 @@ function Index() {
         <div className="flex justify-center w-full max-w-[360px] mx-auto gap-[10px] sm:px-0">
           <button
             className={`flex font-bold items-center gap-1 justify-center rounded-[200px]
-            ${activeTab === 'college' ? 'text-white' : 'bg-white border border-[#419544] text-black'
+            ${activeTab === 'college' ? 'text-white' : 'bg-white border border-[#a4063d] text-black'
               }`}
             style={{
               width: '132px',
               height: '24px',
               ...(activeTab === 'college' ? {
-                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
+                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #cd205c 0%, #a4063d 100%)'
               } : {})
             }}
             onClick={() => setActiveTab('college')}
@@ -132,13 +132,13 @@ function Index() {
           </button>
           <button
             className={`flex items-center gap-1 justify-center font-bold rounded-[200px]
-            ${activeTab === 'individual' ? 'text-white' : 'bg-white border border-[#419544] text-black'
+            ${activeTab === 'individual' ? 'text-white' : 'bg-white border border-[#a4063d] text-black'
               }`}
             style={{
               width: '132px',
               height: '24px',
               ...(activeTab === 'individual' ? {
-                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
+                background: 'radial-gradient(52.63% 52.63% at 50% 50%, #cd205c 0%, #a4063d 100%)'
               } : {})
             }}
             onClick={() => setActiveTab('individual')}
@@ -165,3 +165,4 @@ function Index() {
 }
 
 export default Index;
+

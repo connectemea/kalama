@@ -21,7 +21,7 @@ function Header({
                 onClick={handleNavigate} 
                 className='rounded-[200px] relative h-[30px] w-[30px] flex items-center justify-center cursor-pointer'
                 style={{
-                    background: 'radial-gradient(52.63% 52.63% at 50% 50%, #8DC63F 0%, #419544 100%)'
+                    background: 'radial-gradient(52.63% 52.63% at 50% 50%, #cd205c 0%, #a4063d 100%)'
                 }}
             >
                 <button className=" px-1"  {...props}>
@@ -32,9 +32,9 @@ function Header({
                 {
                     'bg-[#3592BA] border-2 border-[#3592BA]': color === '#3592BA',
                     'bg-customEmerald border-2 border-customEmerald': color === '#00A99D',
-                    'bg-customGreen border-2 border-customGreen': color === '#8DC63F',
+                    'bg-customGreen border-2 border-customGreen': color === '#cd205c',
                     'bg-black border-2 border-white': color === 'black',
-                    'bg-white border-2 border-[#419544]': color === 'white',
+                    'bg-white border-2 border-[#a4063d]': color === 'white',
                 })}>
                 <h1 className={classNames(
                     {
@@ -49,3 +49,4 @@ function Header({
 }
 
 export default Header
+

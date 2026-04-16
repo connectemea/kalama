@@ -1,4 +1,4 @@
-import { Logo , Logo_Kalolsavam, Logo_Aikia } from "@/assets/logos/kalamelam";
+import { Logo , Logo_Kalolsavam, Logo_Aikia } from "@/assets/logos/interzone";
 import HomeBtn from "@/components/ui/HomeBtn";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";

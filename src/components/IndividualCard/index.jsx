@@ -3,16 +3,16 @@ import Star from '@/components/ui/Star';
 function index({ individual, index, title, individualIndex  }) {
 
     function pickShadowColor(index) {
-        const colors = ['#419544', '#8DC63F', '#00A99D', '#047169'];
-        const color = colors[index] || '#419544';
+        const colors = ['#a4063d', '#cd205c', '#00A99D', '#047169'];
+        const color = colors[index] || '#a4063d';
         return `1.5px 1.5px 2px ${color}80`;
     }
 
     function pickColor(index) {
         if (index === 0) {
-            return '#419544'
+            return '#a4063d'
         } else if (index === 1) {
-            return '#8DC63F'
+            return '#cd205c'
         } else if (index === 2) {
             return '#00A99D'
         } else if (index === 3) {
@@ -77,3 +77,4 @@ function index({ individual, index, title, individualIndex  }) {
 }
 
 export default index
+

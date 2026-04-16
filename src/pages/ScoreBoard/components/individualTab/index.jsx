@@ -18,7 +18,7 @@ function IndividualTab({ data = [] }) {
     function pickShadowColor(index) {
         switch (index) {
             case 0:
-                return '1.5px 1.5px 5px #8DC63F';
+                return '1.5px 1.5px 5px #cd205c';
             case 1:
                 return '1.5px 1.5px 5px #00A99D';
             case 2:
