@@ -10,11 +10,11 @@ function index({ individual, index, title, individualIndex  }) {
 
     function pickColor(index) {
         if (index === 0) {
-            return '#a4063d'
+            return '#32ac41'
         } else if (index === 1) {
-            return '#cd205c'
+            return '#ed2024'
         } else if (index === 2) {
-            return '#00A99D'
+            return '#682d91'
         } else if (index === 3) {
             return '#047169'
         } else {

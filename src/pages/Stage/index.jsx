@@ -22,7 +22,7 @@ function Stage() {
     }
   }
 
-  const borderColor = pickColor((parseInt(id) % 3) + 1);
+  const borderColor = pickColor((parseInt(id) % 3) + 0);
 
   return (
     <div className="w-full select-none">
